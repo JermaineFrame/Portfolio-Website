@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function(){try{var s=localStorage.getItem('jj-theme');var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme', s||(d?'dark':'light'));}catch(e){}})();
+  </script>
+  <title id="pageTitle">Project &mdash; Jermaine Johnson</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="project">
+
+  <header class="site-nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="dot"></span>JERMAINE JOHNSON</a>
+      <div class="nav-right">
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="research.html">Research</a>
+          <a href="interactive.html">Interactive</a>
+          <a href="visual-arts.html">Visual Arts</a>
+          <a href="about.html">About</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article class="section project-detail">
+      <div class="container">
+
+        <a class="back-link" id="backLink" href="index.html">&larr; BACK</a>
+
+        <header class="project-header">
+          <span class="eyebrow" id="projectCategory">Project</span>
+          <h1 class="project-title" id="projectTitle">Loading&hellip;</h1>
+          <div class="project-meta-row" id="projectMetaRow"></div>
+        </header>
+
+        <!-- Standard layout (used when there's no caseStudy field) -->
+        <div class="project-body" id="projectBody">
+          <figure class="project-hero" id="projectHero">
+            <img id="projectHeroImg" alt="" />
+          </figure>
+
+          <aside class="project-side">
+            <div>
+              <h4>Overview</h4>
+              <p class="description" id="projectDescription"></p>
+            </div>
+            <div id="projectMethodologyWrap" hidden>
+              <h4>Methodology</h4>
+              <p id="projectMethodology"></p>
+            </div>
+            <div>
+              <h4>Role</h4>
+              <p id="projectRole"></p>
+            </div>
+            <div>
+              <h4>Tools</h4>
+              <p id="projectTools"></p>
+            </div>
+            <div>
+              <h4>Year</h4>
+              <p id="projectYear"></p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="project-media-grid" id="projectMedia"></div>
+
+        <!-- Case study layout: outcome + process timeline -->
+        <section class="case-study" id="caseStudy" hidden>
+          <div class="case-outcome">
+            <span class="eyebrow">Final Outcome</span>
+            <div class="case-outcome-inner">
+              <figure class="case-outcome-media">
+                <img id="caseOutcomeImg" alt="" />
+              </figure>
+              <div class="case-outcome-text">
+                <h3 id="caseOutcomeTitle"></h3>
+                <p id="caseOutcomeBody"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-process">
+            <span class="eyebrow">Process Timeline</span>
+            <ol class="timeline" id="caseTimeline"></ol>
+          </div>
+        </section>
+
+        <div class="next-project" id="nextProject" hidden>
+          <a href="#" id="nextProjectLink">
+            <span class="label">Next Project</span>
+            <span class="title" id="nextProjectTitle"></span>
+            <span class="label">&rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">&larr;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">&rarr;</button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImg" alt="" />
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 JERMAINE JOHNSON</span>
+        <span>RESEARCH / INTERACTIVE / VISUAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

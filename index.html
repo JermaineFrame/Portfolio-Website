@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function(){try{var s=localStorage.getItem('jj-theme');var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme', s||(d?'dark':'light'));}catch(e){}})();
+  </script>
+  <title>Jermaine Johnson, PhD Researcher &amp; Digital Media Specialist</title>
+  <meta name="description" content="Jermaine Johnson, PhD Researcher in Digital Humanities and Digital Media Specialist. Research, interactive work and visual arts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="dot"></span>JERMAINE JOHNSON
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html" class="active">Home</a>
+          <a href="research.html">Research</a>
+          <a href="interactive.html">Interactive</a>
+          <a href="visual-arts.html">Visual Arts</a>
+          <a href="about.html">About</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <span class="eyebrow">Digital Humanities, Visual Practice</span>
+        <h1>JERMAINE<br/><span class="accent">JOHNSON</span></h1>
+        <p class="hero-role">
+          PhD Researcher in Digital Humanities &amp; Digital Media Specialist.
+        </p>
+        <p class="hero-tagline">
+          Working at the intersection of scholarly research, interactive systems
+          and visual practice. I build methodology-led projects that can be read,
+          played and looked at.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#featured">View Work <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-ghost" href="about.html">About &amp; CV</a>
+        </div>
+      </div>
+      <div class="hero-meta" aria-hidden="true">
+        <span class="line">/ 001</span>
+        <span class="line blue">LAT 51.5074&deg; N</span>
+        <span class="line">LON 0.1278&deg; W</span>
+      </div>
+    </section>
+
+    <!-- FEATURED, one per category -->
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-head">
+          <div class="left">
+            <span class="eyebrow">Featured</span>
+            <h2 class="section-title">Three tracks,<br/>one body of work.</h2>
+          </div>
+          <p class="text-muted" style="max-width:360px">
+            One highlight from each stream: research, interactive, visual arts.
+            Click through to browse the full archive.
+          </p>
+        </div>
+        <div class="featured-grid" id="featuredGrid">
+          <!-- populated by js/main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKS -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="left">
+            <span class="eyebrow">Tracks</span>
+            <h2 class="section-title">Where I<br/>operate.</h2>
+          </div>
+          <p class="text-muted" style="max-width:360px">
+            Three entry points into the archive. All three share one visual language.
+          </p>
+        </div>
+
+        <div class="disciplines">
+          <a class="discipline discipline--research" href="research.html">
+            <span class="num">01 / RESEARCH</span>
+            <h3>Research &amp;<br/>Scholarship</h3>
+            <p>Academic projects, publications and research visualisations, organised by methodology.</p>
+            <span class="go">Browse <span class="arrow">&rarr;</span></span>
+          </a>
+          <a class="discipline discipline--interactive" href="interactive.html">
+            <span class="num">02 / INTERACTIVE</span>
+            <h3>Interactive<br/>&amp; Games</h3>
+            <p>Game prototypes, playable simulations and digital archive experiences built in Unity and C#.</p>
+            <span class="go">Browse <span class="arrow">&rarr;</span></span>
+          </a>
+          <a class="discipline discipline--visual" href="visual-arts.html">
+            <span class="num">03 / VISUAL</span>
+            <h3>Visual<br/>Arts</h3>
+            <p>A combined gallery of graphic design, 3D modelling and photography, with filters and a lightbox.</p>
+            <span class="go">Browse <span class="arrow">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT STRIP -->
+    <section class="about-strip">
+      <div class="container">
+        <div class="grid">
+          <div>
+            <span class="accent-line"></span>
+            <h2>About the<br/>studio.</h2>
+          </div>
+          <div>
+            <p>
+              I&rsquo;m Jermaine Johnson, a PhD researcher in digital humanities and a
+              digital media specialist. My practice spans scholarly research, interactive
+              systems and visual arts, and I treat each project as a system: what are the
+              shapes, what are the constraints, what will survive a second glance.
+            </p>
+            <div style="margin-top: var(--space-4); display:flex; gap: var(--space-2); flex-wrap:wrap">
+              <a class="btn btn-ghost" href="about.html">Full bio &amp; CV</a>
+              <a class="btn btn-primary" href="cv.html">View CV <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="grid">
+        <div>
+          <h5>Contact</h5>
+          <a href="mailto:jermainejeromejohnson@gmail.com">jermainejeromejohnson@gmail.com</a>
+          <a href="cv.html">View CV &darr;</a>
+        </div>
+        <div>
+          <h5>Directory</h5>
+          <a href="research.html">Research &amp; Scholarship</a>
+          <a href="interactive.html">Interactive &amp; Games</a>
+          <a href="visual-arts.html">Visual Arts</a>
+          <a href="about.html">About</a>
+        </div>
+        <div>
+          <h5>Elsewhere</h5>
+          <a href="#" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="#" target="_blank" rel="noopener">ORCID</a>
+          <a href="#" target="_blank" rel="noopener">GitHub</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 JERMAINE JOHNSON</span>
+        <span>RESEARCH / INTERACTIVE / VISUAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

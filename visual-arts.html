@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function(){try{var s=localStorage.getItem('jj-theme');var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme', s||(d?'dark':'light'));}catch(e){}})();
+  </script>
+  <title>Visual Arts &mdash; Jermaine Johnson</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="visual">
+
+  <header class="site-nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="dot"></span>JERMAINE JOHNSON</a>
+      <div class="nav-right">
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="research.html">Research</a>
+          <a href="interactive.html">Interactive</a>
+          <a href="visual-arts.html" class="active">Visual Arts</a>
+          <a href="about.html">About</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="sep">/</span>
+          <span>Visual Arts</span>
+        </nav>
+
+        <div class="section-head">
+          <div class="left">
+            <span class="eyebrow">Track 03</span>
+            <h2 class="section-title">Visual<br/>Arts.</h2>
+          </div>
+          <p class="text-muted" style="max-width:360px">
+            Three subcategories. Graphic Design and 3D are project based.
+            Photography is a flat gallery that keeps each photo at its
+            natural proportions.
+          </p>
+        </div>
+
+        <!-- Large, centered subcategory switcher -->
+        <div class="sub-switcher" id="subSwitcher" role="tablist" aria-label="Visual Arts subcategories">
+          <button class="sub-tab" data-sub="graphic" role="tab" aria-selected="false" type="button">
+            <span class="sub-tab-num">01</span>
+            <span class="sub-tab-label">Graphic Design</span>
+          </button>
+          <button class="sub-tab" data-sub="3d" role="tab" aria-selected="false" type="button">
+            <span class="sub-tab-num">02</span>
+            <span class="sub-tab-label">3D</span>
+          </button>
+          <button class="sub-tab" data-sub="photo" role="tab" aria-selected="false" type="button">
+            <span class="sub-tab-num">03</span>
+            <span class="sub-tab-label">Photography</span>
+          </button>
+        </div>
+
+        <!-- Project-based view, shown for graphic + 3d -->
+        <div class="gallery-grid" id="visualProjectGrid" aria-live="polite" hidden></div>
+
+        <!-- Flat image gallery, shown for photo -->
+        <div class="masonry photo-masonry" id="photoMasonry" aria-live="polite" hidden></div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">&larr;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">&rarr;</button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImg" alt="" />
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 JERMAINE JOHNSON</span>
+        <span>RESEARCH / INTERACTIVE / VISUAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

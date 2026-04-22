@@ -1,0 +1,291 @@
+{
+  "projects": [
+
+    {
+      "id": "book-design",
+      "title": "Into The Unknown, Book Design",
+      "category": "visual",
+      "subcategory": "graphic",
+      "subtype": "editorial",
+      "year": "2020",
+      "role": "Designer, Illustrator",
+      "tools": ["InDesign", "Photoshop", "Illustrator"],
+      "summary": "Cover, interior layout and identity for an illustrated book.",
+      "description": "A self-initiated book project titled Into The Unknown, covering cover design, interior layout, and a series of full-bleed illustrated spreads. The identity leans on bold type and quiet negative space to let the imagery carry the narrative.",
+      "cover": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png",
+      "media": [
+        { "type": "image", "src": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png", "alt": "Book cover mockup" },
+        { "type": "image", "src": "assets/graphic-design/Book%20Design/book_breakdown_02_300.png", "alt": "Interior spread breakdown" }
+      ],
+      "featured": true,
+      "caseStudy": {
+        "outcome": {
+          "image": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png",
+          "title": "Final Cover",
+          "text": "The final cover pairs a centered display wordmark with a moody, large-format illustration. The choice of a single dominant image anchors the identity so the interior spreads can vary in pace without breaking the book's visual voice. The system was carried through to the interior breakdown, with consistent hierarchy, generous margins and restrained type sizing."
+        },
+        "timeline": [
+          {
+            "step": "01",
+            "title": "First Draft",
+            "image": "assets/graphic-design/Book%20Design/into%20the%20unkown_draft-1.jpg",
+            "text": "Opening exploration. The first draft experimented with a landscape-led composition and a lighter typographic treatment. Useful for establishing scale but the title was reading as secondary to the illustration."
+          },
+          {
+            "step": "02",
+            "title": "Second Iteration",
+            "image": "assets/graphic-design/Book%20Design/into%20the%20unkown_draft2.png",
+            "text": "Shift to a heavier, stacked wordmark that could hold its own against the imagery. Introduced a darker color envelope so the cover would pull attention on a crowded shelf."
+          },
+          {
+            "step": "03",
+            "title": "Third Iteration",
+            "image": "assets/graphic-design/Book%20Design/into%20the%20unkown_draft3.jpg",
+            "text": "Refined spacing, cleaned up the join between the title lockup and the illustration's negative space, and settled on the proportions that carried through to the final cover."
+          },
+          {
+            "step": "04",
+            "title": "Interior Breakdown",
+            "image": "assets/graphic-design/Book%20Design/book_breakdown_02_300.png",
+            "text": "Full interior breakdown showing how the cover's visual language was extended to running heads, chapter openers and image plates inside the book."
+          }
+        ]
+      }
+    },
+
+    {
+      "id": "school-magazine",
+      "title": "School Magazine",
+      "category": "visual",
+      "subcategory": "graphic",
+      "subtype": "editorial",
+      "year": "2023",
+      "role": "Art Director, Designer",
+      "tools": ["InDesign", "Photoshop"],
+      "summary": "Magazine identity and interior layout system.",
+      "description": "A school magazine redesign covering masthead, grid, typographic hierarchy and interior spreads.",
+      "cover": "assets/graphic-design/School%20Magazine/Header-image-magazine.jpg",
+      "media": [
+        { "type": "image", "src": "assets/graphic-design/School%20Magazine/Header-image-magazine.jpg", "alt": "Magazine cover mockup" },
+        { "type": "image", "src": "assets/graphic-design/School%20Magazine/school-magazine-inside.png", "alt": "Magazine interior spreads" }
+      ],
+      "featured": false
+    },
+
+    {
+      "id": "web-redesign",
+      "title": "Web Redesign",
+      "category": "visual",
+      "subcategory": "graphic",
+      "subtype": "digital",
+      "year": "2023",
+      "role": "UI Designer",
+      "tools": ["Figma", "Photoshop"],
+      "summary": "Responsive website concept with desktop and mobile mockups.",
+      "description": "A responsive website redesign exploring navigation, hierarchy and component reuse across desktop and mobile.",
+      "cover": "assets/graphic-design/Web%20Redesign/Header-Web%20Mockup.jpg",
+      "media": [
+        { "type": "image", "src": "assets/graphic-design/Web%20Redesign/Header-Web%20Mockup.jpg", "alt": "Desktop hero mockup" },
+        { "type": "image", "src": "assets/graphic-design/Web%20Redesign/Mockup.png", "alt": "Full desktop mockup" },
+        { "type": "image", "src": "assets/graphic-design/Web%20Redesign/Mobile-Mockup.jpg", "alt": "Mobile mockup" }
+      ],
+      "featured": false
+    },
+
+    {
+      "id": "restaurant-menu",
+      "title": "Restaurant Menu",
+      "category": "visual",
+      "subcategory": "graphic",
+      "subtype": "print",
+      "year": "2020",
+      "role": "Designer",
+      "tools": ["InDesign", "Illustrator"],
+      "summary": "Menu system built around bold type and a tactile print feel.",
+      "description": "Menu and identity work for a restaurant concept.",
+      "cover": "assets/graphic-design/restaurant%20Menu/Header-Menu_MU.png",
+      "media": [
+        { "type": "image", "src": "assets/graphic-design/restaurant%20Menu/Header-Menu_MU.png", "alt": "Menu hero mockup" },
+        { "type": "image", "src": "assets/graphic-design/restaurant%20Menu/Menu_Mockup.jpg", "alt": "Menu mockup in use" }
+      ],
+      "featured": false
+    },
+
+    {
+      "id": "dragon-sword",
+      "title": "Dragon Sword",
+      "category": "visual",
+      "subcategory": "3d",
+      "subtype": "prop",
+      "year": "2023",
+      "role": "3D Modeler, Texture Artist",
+      "tools": ["Blender", "Substance Painter"],
+      "summary": "High-detail fantasy sword with sculpted hilt ornamentation.",
+      "description": "A fantasy weapon study focused on ornate metalwork and dramatic material contrast.",
+      "cover": "assets/3d-modeling/Dragon%20Sword/Dragon%20Sword%20RenderNew.jpg",
+      "media": [
+        { "type": "image", "src": "assets/3d-modeling/Dragon%20Sword/Dragon%20Sword%20RenderNew.jpg", "alt": "Full render of the dragon sword" },
+        { "type": "image", "src": "assets/3d-modeling/Dragon%20Sword/Close%20Up%20Hilt.jpg", "alt": "Close up of the hilt" },
+        { "type": "image", "src": "assets/3d-modeling/Dragon%20Sword/Close%20Up%20Hilt2.jpg", "alt": "Alternate close up of the hilt" }
+      ],
+      "featured": true
+    },
+
+    {
+      "id": "kitchen-render",
+      "title": "Modular Kitchen",
+      "category": "visual",
+      "subcategory": "3d",
+      "subtype": "environment",
+      "year": "2021",
+      "role": "Environment Artist",
+      "tools": ["Blender", "Cycles"],
+      "summary": "Studio kitchen environment, material and lighting study.",
+      "description": "An interior environment built to test modular asset workflows and physically based lighting.",
+      "cover": "assets/3d-modeling/3D%20Kitchen/Kitchen-Render.jpg",
+      "media": [
+        { "type": "image", "src": "assets/3d-modeling/3D%20Kitchen/Kitchen-Render.jpg", "alt": "Final lit render of the kitchen" },
+        { "type": "image", "src": "assets/3d-modeling/3D%20Kitchen/Kitchen-solid.jpg", "alt": "Solid shaded working view of the kitchen" }
+      ],
+      "featured": false
+    },
+
+    {
+      "id": "stylized-character",
+      "title": "Melody, Stylized Character",
+      "category": "visual",
+      "subcategory": "3d",
+      "subtype": "character",
+      "year": "2023",
+      "role": "Character Artist",
+      "tools": ["Blender", "ZBrush"],
+      "summary": "Stylised character portrait exploring shape language.",
+      "description": "A stylised 3D character study focused on strong silhouette, readable shape language and expressive posing.",
+      "cover": "assets/3d-modeling/Stylized%20Character/Melody.jpg",
+      "media": [
+        { "type": "image", "src": "assets/3d-modeling/Stylized%20Character/Melody.jpg", "alt": "Final character render" }
+      ],
+      "featured": false
+    },
+
+    {
+      "id": "cel-shaded-character",
+      "title": "Yukanashi, Cel-Shaded Character",
+      "category": "visual",
+      "subcategory": "3d",
+      "subtype": "character",
+      "year": "2023",
+      "role": "Character Artist, Illustrator",
+      "tools": ["Blender", "Photoshop"],
+      "summary": "Cel-shaded 3D character with a full reference sheet.",
+      "description": "A cel-shaded 3D character developed alongside a full reference sheet covering turnarounds, expression studies, costume variants and prop breakdowns.",
+      "cover": "assets/3d-modeling/Cel-Shaded-Character/Yukanashi%20Character%20Sheet.jpg",
+      "media": [
+        { "type": "image", "src": "assets/3d-modeling/Cel-Shaded-Character/Yukanashi%20Character%20Sheet.jpg", "alt": "Full character reference sheet" }
+      ],
+      "featured": false
+    },
+
+    { "id": "photo-street-01",       "title": "Street, Placeholder",       "category": "visual", "subcategory": "photo", "subtype": "street",       "year": "2025", "role": "Photographer", "tools": ["35mm"],        "summary": "Street photography series.",  "description": "Placeholder.", "cover": "", "media": [], "featured": false },
+    { "id": "photo-portrait-01",     "title": "Portrait, Placeholder",     "category": "visual", "subcategory": "photo", "subtype": "portrait",     "year": "2024", "role": "Photographer", "tools": ["Studio"],      "summary": "Studio portrait sitting.",    "description": "Placeholder.", "cover": "", "media": [], "featured": false },
+    { "id": "photo-landscape-01",    "title": "Landscape, Placeholder",    "category": "visual", "subcategory": "photo", "subtype": "landscape",    "year": "2024", "role": "Photographer", "tools": ["Medium format"],"summary": "Coastal landscape study.",    "description": "Placeholder.", "cover": "", "media": [], "featured": false },
+    { "id": "photo-architecture-01", "title": "Architecture, Placeholder", "category": "visual", "subcategory": "photo", "subtype": "architecture", "year": "2023", "role": "Photographer", "tools": ["Digital"],     "summary": "Architectural photography.",  "description": "Placeholder.", "cover": "", "media": [], "featured": false },
+
+    {
+      "id": "research-dh-thesis",
+      "title": "Digital Archive Methodologies in Contested Spaces",
+      "category": "research",
+      "type": "publication",
+      "year": "2026",
+      "venue": "PhD Thesis, in preparation",
+      "summary": "Doctoral research on computational methods for archiving contested cultural heritage.",
+      "description": "Ongoing doctoral research examining the intersection of digital humanities methodologies and the preservation of contested cultural heritage across three UK-based case studies.",
+      "methodology": "Mixed-methods design combining archival ethnography, computational text analysis (topic modeling, NER) and participatory co-design sessions with community archivists.",
+      "link": "",
+      "featured": true
+    },
+    {
+      "id": "research-visualisation-01",
+      "title": "Network Visualisation, Placeholder",
+      "category": "research",
+      "type": "visualization",
+      "year": "2025",
+      "venue": "Internal working paper",
+      "summary": "Interactive network visualisation of citation patterns in digital humanities journals.",
+      "description": "Placeholder description for a research visualisation entry.",
+      "methodology": "Bibliometric network analysis built on OpenAlex metadata, rendered with D3.js force-directed graphs.",
+      "link": "",
+      "featured": false
+    },
+    {
+      "id": "research-conference-paper",
+      "title": "Conference Paper, Placeholder",
+      "category": "research",
+      "type": "publication",
+      "year": "2024",
+      "venue": "DH Conference, Placeholder",
+      "summary": "Conference paper on interactive methods in humanities research.",
+      "description": "Placeholder conference paper entry.",
+      "methodology": "Case study methodology grounded in three longitudinal site visits.",
+      "link": "",
+      "featured": false
+    },
+    {
+      "id": "research-project-01",
+      "title": "Oral History Platform, Placeholder",
+      "category": "research",
+      "type": "project",
+      "year": "2024",
+      "venue": "Funded research project",
+      "summary": "Platform for community-led oral history collection and annotation.",
+      "description": "Placeholder research project entry.",
+      "methodology": "Participatory action research with a co-designed annotation schema, deployed via a lightweight web interface.",
+      "link": "",
+      "featured": false
+    },
+
+    {
+      "id": "interactive-game-theory",
+      "title": "Prisoner's Dilemma, Playable Simulation",
+      "category": "interactive",
+      "type": "simulation",
+      "year": "2025",
+      "tools": ["Unity", "C#"],
+      "tags": ["Game Theory", "Unity", "C#", "Simulation"],
+      "summary": "Playable simulation exploring classical game theory scenarios.",
+      "description": "Placeholder description. A Unity-based simulation that lets users run iterated prisoner's dilemma tournaments against a set of canonical strategies.",
+      "cover": "",
+      "media": [],
+      "featured": true
+    },
+    {
+      "id": "interactive-archive-walk",
+      "title": "Digital Archive Walkthrough",
+      "category": "interactive",
+      "type": "experience",
+      "year": "2024",
+      "tools": ["Unity", "C#", "Digital Archiving"],
+      "tags": ["Unity", "C#", "Digital Archiving", "3D"],
+      "summary": "Immersive 3D walkthrough of a digitally reconstructed archive space.",
+      "description": "Placeholder description. A first-person interactive walkthrough of a digitally reconstructed historical archive, built as a companion to the DH research track.",
+      "cover": "",
+      "media": [],
+      "featured": false
+    },
+    {
+      "id": "interactive-game-placeholder-01",
+      "title": "Game Prototype, Placeholder",
+      "category": "interactive",
+      "type": "game",
+      "year": "2024",
+      "tools": ["Unity", "C#"],
+      "tags": ["Unity", "C#", "Game Design"],
+      "summary": "Short-form game prototype.",
+      "description": "Placeholder description.",
+      "cover": "",
+      "media": [],
+      "featured": false
+    }
+
+  ]
+}

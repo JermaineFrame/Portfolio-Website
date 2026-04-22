@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function(){try{var s=localStorage.getItem('jj-theme');var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme', s||(d?'dark':'light'));}catch(e){}})();
+  </script>
+  <title>CV &mdash; Jermaine Johnson</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="dot"></span>JERMAINE JOHNSON</a>
+      <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="interactive.html">Interactive</a>
+        <a href="visual-arts.html">Visual Arts</a>
+        <a href="about.html">About</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="sep">/</span>
+          <span>CV</span>
+        </nav>
+
+        <div class="cv-head">
+          <div>
+            <span class="eyebrow">Document</span>
+            <h2 class="section-title">Curriculum<br/>Vit&aelig;.</h2>
+          </div>
+          <div style="display:flex; gap: var(--space-2); flex-wrap:wrap">
+            <a class="btn btn-accent" href="assets/cv/Jermaine_Johnson_CV.pdf" download>Download PDF &darr;</a>
+            <a class="btn btn-ghost" href="assets/cv/Jermaine_Johnson_CV.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          </div>
+        </div>
+
+        <div class="cv-viewer">
+          <iframe
+            src="assets/cv/Jermaine_Johnson_CV.pdf#view=FitH"
+            title="Jermaine Johnson CV"
+            loading="lazy">
+            Your browser cannot display embedded PDFs.
+            <a href="assets/cv/Jermaine_Johnson_CV.pdf">Download the CV</a>.
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 JERMAINE JOHNSON</span>
+        <span>RESEARCH / INTERACTIVE / VISUAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
