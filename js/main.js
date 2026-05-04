@@ -71,7 +71,8 @@
   const INTERACTIVE_TYPE_LABELS = {
     simulation: 'Simulation',
     experience: 'Experience',
-    game:       'Game'
+    game:       'Game',
+    narrative:  'Narrative'
   };
 
   // --- Data fetch with tolerant fallback ----------------------------------

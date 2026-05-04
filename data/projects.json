@@ -285,6 +285,23 @@
       "cover": "",
       "media": [],
       "featured": false
+    },
+
+    {
+      "id": "interactive-narrative-preservation",
+      "title": "On Disappearing Games, Argument Machine",
+      "category": "interactive",
+      "type": "narrative",
+      "year": "2025",
+      "role": "Designer, Developer",
+      "tools": ["p5.js", "Tracery", "JavaScript"],
+      "tags": ["p5.js", "Tracery", "Generative Text", "Narrative", "Game Preservation"],
+      "summary": "A generative argument machine about game preservation, built from Tracery grammars and an ambient p5.js particle poem.",
+      "description": "Two linked pieces exploring the crisis of game preservation through procedural language. The first is an ambient particle poem in p5.js: action verbs — fall, drop, fly, break, rise — drift down a deep purple canvas, evoking the slow disappearance of interactive works. The second is a Tracery-powered argument generator drawing on 17 game theorists and digital humanities scholars (Huizinga, Bogost, Derrida, Manovich, Stiegler and others): select a thinker to generate a unique argument about bit rot, format obsolescence, server shutdowns, and cultural loss — or trigger a free-form passage from the full grammar. The grammar is grounded in documented events (GameSpy, City of Heroes, P.T., The Crew) and real statistics on the inaccessibility of classic games.",
+      "link": "assets/game-interactive/Narrative/index.html",
+      "cover": "",
+      "media": [],
+      "featured": true
     }
 
   ]
