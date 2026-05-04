@@ -594,19 +594,7 @@
       // Hero image (used for both layouts)
       const heroImg = document.getElementById('projectHeroImg');
       const heroFigure = document.getElementById('projectHero');
-      if (project.embed) {
-        // Embed an interactive piece directly in the hero frame
-        heroImg.remove();
-        if (heroFigure) {
-          const iframe = el('iframe', {
-            src: project.embed,
-            title: project.title,
-            allowfullscreen: '',
-            loading: 'lazy'
-          });
-          heroFigure.appendChild(iframe);
-        }
-      } else if (project.cover) {
+      if (project.cover) {
         heroImg.src = project.cover;
         heroImg.alt = project.title;
         const heroIdx = pushLb(project.cover, project.title, project.title);
