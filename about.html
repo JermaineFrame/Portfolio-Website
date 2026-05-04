@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -124,7 +123,115 @@
             <span class="eyebrow">Area of Operation</span>
             <span class="about-map-region">Central Florida</span>
           </div>
-          <div class="about-map" id="areaMap"></div>
+
+          <!-- SVG vector map — polygon coordinates from AreaofOperation.kml
+               Projection: linear equirectangular, lng/lat → x/y
+               Bounds: lng −82.25→−81.0 (scale 400px/°), lat 27.7→28.85 (scale 347.8px/°)
+               Origin: x=60 @ lng=−82.25, y=60 @ lat=28.85 -->
+          <div class="about-map">
+            <svg class="area-map-svg" viewBox="0 0 600 520" width="100%" height="100%"
+                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
+                 aria-label="Area of Operation, Central Florida" role="img">
+              <style>
+                .am-grid  { stroke: var(--divider); stroke-width: 0.8; fill: none; stroke-dasharray: 4 6; }
+                .am-dot   { fill: var(--divider); stroke: none; }
+                .am-lbl   { font-family: var(--font-mono); font-size: 10px; fill: var(--fg-muted); }
+                .am-lbl-l { text-anchor: end;    dominant-baseline: middle; }
+                .am-lbl-t { text-anchor: middle; dominant-baseline: auto; }
+                .am-poly  { fill: var(--accent-orange); fill-opacity: 0.12;
+                            stroke: var(--accent-orange); stroke-width: 2; stroke-linejoin: round; }
+                .am-city  { fill: var(--accent-orange); }
+                .am-clbl  { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.07em;
+                            fill: var(--fg-secondary); dominant-baseline: middle; }
+                .am-cap   { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em;
+                            fill: var(--fg-muted); }
+                .am-n-ln  { stroke: var(--fg-secondary); stroke-width: 1.5; }
+                .am-n-ar  { fill: var(--fg-secondary); }
+              </style>
+
+              <!-- Latitude grid lines (horizontal) -->
+              <line class="am-grid" x1="60" y1="94.8"  x2="560" y2="94.8"/>   <!-- 28°45′N -->
+              <line class="am-grid" x1="60" y1="181.7" x2="560" y2="181.7"/>  <!-- 28°30′N -->
+              <line class="am-grid" x1="60" y1="268.7" x2="560" y2="268.7"/>  <!-- 28°15′N -->
+              <line class="am-grid" x1="60" y1="355.6" x2="560" y2="355.6"/>  <!-- 28°00′N -->
+
+              <!-- Longitude grid lines (vertical) -->
+              <line class="am-grid" x1="160" y1="60" x2="160" y2="460"/>  <!-- 82°00′W -->
+              <line class="am-grid" x1="260" y1="60" x2="260" y2="460"/>  <!-- 81°45′W -->
+              <line class="am-grid" x1="360" y1="60" x2="360" y2="460"/>  <!-- 81°30′W -->
+              <line class="am-grid" x1="460" y1="60" x2="460" y2="460"/>  <!-- 81°15′W -->
+
+              <!-- Grid intersection dots -->
+              <circle class="am-dot" cx="160" cy="94.8"  r="2.5"/>
+              <circle class="am-dot" cx="260" cy="94.8"  r="2.5"/>
+              <circle class="am-dot" cx="360" cy="94.8"  r="2.5"/>
+              <circle class="am-dot" cx="460" cy="94.8"  r="2.5"/>
+              <circle class="am-dot" cx="160" cy="181.7" r="2.5"/>
+              <circle class="am-dot" cx="260" cy="181.7" r="2.5"/>
+              <circle class="am-dot" cx="360" cy="181.7" r="2.5"/>
+              <circle class="am-dot" cx="460" cy="181.7" r="2.5"/>
+              <circle class="am-dot" cx="160" cy="268.7" r="2.5"/>
+              <circle class="am-dot" cx="260" cy="268.7" r="2.5"/>
+              <circle class="am-dot" cx="360" cy="268.7" r="2.5"/>
+              <circle class="am-dot" cx="460" cy="268.7" r="2.5"/>
+              <circle class="am-dot" cx="160" cy="355.6" r="2.5"/>
+              <circle class="am-dot" cx="260" cy="355.6" r="2.5"/>
+              <circle class="am-dot" cx="360" cy="355.6" r="2.5"/>
+              <circle class="am-dot" cx="460" cy="355.6" r="2.5"/>
+
+              <!-- Latitude labels (left) -->
+              <text class="am-lbl am-lbl-l" x="52" y="94.8">28°45′N</text>
+              <text class="am-lbl am-lbl-l" x="52" y="181.7">28°30′N</text>
+              <text class="am-lbl am-lbl-l" x="52" y="268.7">28°15′N</text>
+              <text class="am-lbl am-lbl-l" x="52" y="355.6">28°00′N</text>
+
+              <!-- Longitude labels (top) -->
+              <text class="am-lbl am-lbl-t" x="160" y="50">82°00′W</text>
+              <text class="am-lbl am-lbl-t" x="260" y="50">81°45′W</text>
+              <text class="am-lbl am-lbl-t" x="360" y="50">81°30′W</text>
+              <text class="am-lbl am-lbl-t" x="460" y="50">81°15′W</text>
+
+              <!-- Area of Operation polygon
+                   Vertices projected from KML coordinates (lng,lat → x,y):
+                   x = 60 + (lng + 82.25) × 400
+                   y = 60 + (28.85 − lat) × 347.8 -->
+              <polygon class="am-poly" points="
+                509.8,156.2
+                496.9,106.8
+                329.7,102.5
+                242.6,138.3
+                263.5,261.4
+                152.1,290.1
+                99.8,319.3
+                214.7,416.3
+                280.0,377.7
+                314.5,326.1
+                344.0,315.5
+                361.0,332.7
+                387.6,326.5
+                430.1,271.1"/>
+
+              <!-- City markers -->
+              <circle class="am-city" cx="408.3" cy="168.4" r="3.5"/>
+              <text  class="am-clbl" x="415" y="168.4">ORLANDO</text>
+
+              <circle class="am-city" cx="397.0" cy="254.1" r="3.5"/>
+              <text  class="am-clbl" x="404" y="254.1">KISSIMMEE</text>
+
+              <circle class="am-city" cx="180.1" cy="341.9" r="3.5"/>
+              <text  class="am-clbl" x="187" y="341.9">LAKELAND</text>
+
+              <!-- North indicator (bottom-right) -->
+              <line class="am-n-ln" x1="548" y1="478" x2="548" y2="462"/>
+              <polygon class="am-n-ar" points="548,457 544.5,466 548,463.5 551.5,466"/>
+              <text class="am-cap" x="548" y="485" text-anchor="middle">N</text>
+
+              <!-- Caption -->
+              <text class="am-cap" x="60" y="492">
+                AREA OF OPERATION  ·  CENTRAL FLORIDA  ·  28°N  81°W  ·  FL, USA
+              </text>
+            </svg>
+          </div>
         </div>
 
       </div>
@@ -141,65 +248,5 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLs=" crossorigin=""></script>
-  <script>
-    (function () {
-      var mapEl = document.getElementById('areaMap');
-      if (!mapEl) return;
-
-      // Polygon coords converted from KML (lng,lat) to Leaflet [lat,lng]
-      var polygon = [
-        [28.57336067028577, -81.12541670889455],
-        [28.71534481968762, -81.15781030055831],
-        [28.72775789939665, -81.57574711261930],
-        [28.62474695671389, -81.79350393021875],
-        [28.27090650736363, -81.74116076902129],
-        [28.18815053186568, -82.01963266261322],
-        [28.10443600378600, -82.15062065136986],
-        [27.82552168771115, -81.86321557965671],
-        [27.93667845931882, -81.70004590436243],
-        [28.08491247532941, -81.61377024889049],
-        [28.11515466860804, -81.53995969730057],
-        [28.06570523391528, -81.49748259081294],
-        [28.08381935677311, -81.43105833757579],
-        [28.24284097181960, -81.32476580432817]
-      ];
-
-      var TILES = {
-        dark:  'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-        light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-      };
-      var ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
-
-      function currentTheme() {
-        return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      }
-
-      var map = L.map('areaMap', { zoomControl: true, scrollWheelZoom: false })
-        .setView([28.27, -81.65], 9);
-
-      var tileLayer = L.tileLayer(TILES[currentTheme()], {
-        maxZoom: 19,
-        attribution: ATTR
-      }).addTo(map);
-
-      var poly = L.polygon(polygon, {
-        color: '#F97316',
-        weight: 2,
-        opacity: 0.9,
-        fillColor: '#F97316',
-        fillOpacity: 0.12
-      }).addTo(map);
-
-      map.fitBounds(poly.getBounds(), { padding: [32, 32] });
-
-      // Swap tiles when the site theme toggles
-      var observer = new MutationObserver(function () {
-        var url = TILES[currentTheme()];
-        tileLayer.setUrl(url);
-      });
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    })();
-  </script>
 </body>
 </html>

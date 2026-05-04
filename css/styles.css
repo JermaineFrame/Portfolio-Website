@@ -1436,17 +1436,11 @@ button.masonry-item { appearance: none; }
   background: var(--bg-surface);
   position: relative;
 }
-.about-map .leaflet-container {
+.about-map .area-map-svg {
+  display: block;
   width: 100%;
   height: 100%;
-  font-family: var(--font-body);
 }
-.about-map .leaflet-control-attribution {
-  font-size: 0.6rem;
-  background: rgba(0,0,0,0.45);
-  color: var(--fg-muted);
-}
-.about-map .leaflet-control-attribution a { color: var(--fg-muted); }
 
 /* --- About strip / Footer ------------------------------------------------- */
 .about-strip {
