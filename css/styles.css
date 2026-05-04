@@ -1325,6 +1325,7 @@ button.masonry-item { appearance: none; }
   overflow: hidden;
 }
 .project-hero img { width: 100%; height: 100%; object-fit: cover; }
+.project-hero iframe { width: 100%; height: 100%; border: none; display: block; }
 .project-side {
   background: var(--bg-elevated);
   padding: var(--space-5);
