@@ -1033,6 +1033,35 @@ button.masonry-item { appearance: none; }
   border-bottom-color: var(--accent-blue);
 }
 
+/* --- Standard media grid: video support ---------------------------------- */
+.project-media-grid figure.media-video {
+  grid-column: 1 / -1;
+}
+.project-media-grid figure.media-video video {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  background: #000;
+}
+.project-media-grid figure.media-video figcaption {
+  padding-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--fg-secondary);
+  text-transform: uppercase;
+}
+
+/* --- Research list: view detail link ------------------------------------- */
+.research-item .side .view-detail {
+  color: var(--accent-blue);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+.research-item .side .view-detail:hover { text-decoration: underline; }
+.research-item .body a h3.title:hover { text-decoration: underline; }
+
 /* --- Case study (project detail: outcome + timeline) --------------------- */
 .case-study {
   display: flex;
@@ -1040,6 +1069,7 @@ button.masonry-item { appearance: none; }
   gap: var(--space-6);
   margin-top: var(--space-5);
 }
+.case-study[hidden] { display: none; }
 .case-outcome .eyebrow,
 .case-process .eyebrow {
   margin-bottom: var(--space-3);
@@ -1554,4 +1584,131 @@ button.masonry-item { appearance: none; }
   .lightbox-close,
   .lightbox-nav { width: 40px; height: 40px; }
   .timeline { padding-left: var(--space-5); }
+}
+
+/* =========================================================================
+   Game showcase: phases layout (idea / creation / final)
+   ========================================================================= */
+
+/* Hero banner using the game logo */
+.game-hero {
+  width: 100%;
+  margin-bottom: var(--space-7);
+  background: #000;
+  clip-path: var(--chamfer-lg);
+  overflow: hidden;
+  max-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.92;
+}
+
+/* Phases container */
+.game-phases {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin-top: var(--space-6);
+}
+
+/* Single phase section */
+.game-phase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.game-phase-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--divider);
+}
+.game-phase-header .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+}
+.game-phase-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.game-phase-header p {
+  font-size: 0.95rem;
+  color: var(--fg-secondary);
+  max-width: 56ch;
+  line-height: 1.6;
+}
+
+/* Media grid inside a phase */
+.phase-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+  gap: var(--space-4);
+}
+
+/* Individual media item */
+.phase-media-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--bg-surface);
+  border: 1px solid var(--divider);
+  clip-path: var(--chamfer);
+  overflow: hidden;
+}
+.phase-media-item figure {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+.phase-media-item figure img,
+.phase-media-item figure video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.phase-media-item figure img {
+  cursor: zoom-in;
+}
+.phase-media-item figure img:hover {
+  transform: scale(1.02);
+}
+.phase-media-item figcaption {
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--fg-secondary);
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+/* Full-width items (videos stand alone) */
+.phase-media-item.full-width {
+  grid-column: 1 / -1;
+}
+.phase-media-item.full-width figure video {
+  max-height: 520px;
+  object-fit: contain;
+  background: #000;
+}
+
+@media (max-width: 720px) {
+  .phase-media-grid { grid-template-columns: 1fr; }
+  .phase-media-item.full-width { grid-column: auto; }
+  .game-hero { max-height: 280px; }
 }

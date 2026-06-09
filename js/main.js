@@ -162,6 +162,7 @@
         return;
       }
       items.forEach(function (p, i) {
+        const detailHref = 'project.html?id=' + encodeURIComponent(p.id);
         const li = el('li', { class: 'research-item', 'data-type': (p.type || '').toLowerCase() });
         li.appendChild(el('div', { class: 'idx', text: padIndex(i) }));
 
@@ -178,7 +179,7 @@
         if (p.summary) body.appendChild(el('p', { class: 'summary', text: p.summary, 'data-bind': p.id + ':summary' }));
         if (p.methodology) {
           const meth = el('div', { class: 'methodology' });
-          meth.appendChild(el('strong', { text: 'Methodology' }));
+          meth.appendChild(el('strong', { text: 'Methodology  ' }));
           meth.appendChild(document.createTextNode(p.methodology));
           body.appendChild(meth);
         }
@@ -187,10 +188,12 @@
         const side = el('div', { class: 'side' });
         if (p.year) side.appendChild(el('span', { class: 'year', text: p.year }));
         side.appendChild(el('span', { text: (p.type || '').toUpperCase() }));
+        side.appendChild(document.createElement('br'));
         if (p.link) {
-          side.appendChild(document.createElement('br'));
           side.appendChild(el('a', { href: p.link, target: '_blank', rel: 'noopener', text: 'READ \u2192' }));
+          side.appendChild(document.createElement('br'));
         }
+        side.appendChild(el('a', { href: detailHref, class: 'view-detail', text: 'VIEW \u2192' }));
         li.appendChild(side);
 
         researchList.appendChild(li);
@@ -610,11 +613,78 @@
         }
       }
 
-      // --- Case study timeline (if present) ---
+      // --- Phases layout (game showcase) ---
       const caseStudyEl = document.getElementById('caseStudy');
       const standardBody = document.getElementById('projectBody');
       const standardMedia = document.getElementById('projectMedia');
-      const hasCaseStudy = project.caseStudy && project.caseStudy.timeline && project.caseStudy.timeline.length;
+      const hasPhases = project.phases && project.phases.length;
+
+      if (hasPhases) {
+        if (standardBody) standardBody.hidden = true;
+        if (standardMedia) standardMedia.hidden = true;
+        if (caseStudyEl) caseStudyEl.hidden = true;
+        projectLb.length = 0;
+
+        // Game hero banner
+        const gameHero = el('figure', { class: 'game-hero' });
+        gameHero.appendChild(el('img', { src: project.cover, alt: project.title }));
+        const projectArticle = document.querySelector('.project-detail .container');
+        const backLink = document.getElementById('backLink');
+        if (projectArticle && backLink) {
+          projectArticle.insertBefore(gameHero, backLink.nextSibling.nextSibling);
+        }
+
+        const phasesWrap = el('div', { class: 'game-phases' });
+
+        project.phases.forEach(function (phase) {
+          const section = el('section', { class: 'game-phase' });
+
+          const header = el('div', { class: 'game-phase-header' });
+          if (phase.eyebrow) header.appendChild(el('span', { class: 'eyebrow', text: phase.eyebrow }));
+          header.appendChild(el('h2', { text: phase.title }));
+          if (phase.description) header.appendChild(el('p', { text: phase.description }));
+          section.appendChild(header);
+
+          const grid = el('div', { class: 'phase-media-grid' });
+
+          (phase.items || []).forEach(function (item) {
+            const isVideo = item.type === 'video';
+            const wrapper = el('div', { class: 'phase-media-item' + (isVideo ? ' full-width' : '') });
+            const fig = el('figure', {});
+
+            if (isVideo) {
+              const vid = document.createElement('video');
+              vid.src = item.src;
+              vid.setAttribute('controls', '');
+              vid.setAttribute('playsinline', '');
+              vid.setAttribute('preload', 'metadata');
+              fig.appendChild(vid);
+            } else {
+              const img = el('img', { src: item.src, alt: item.caption || project.title, loading: 'lazy' });
+              const idx = pushLb(item.src, item.caption || project.title, item.caption || project.title);
+              fig.appendChild(img);
+              wireLightbox(fig, idx);
+            }
+
+            if (item.caption) {
+              fig.appendChild(el('figcaption', { text: item.caption }));
+            }
+            wrapper.appendChild(fig);
+            grid.appendChild(wrapper);
+          });
+
+          section.appendChild(grid);
+          phasesWrap.appendChild(section);
+        });
+
+        const insertAfter = standardMedia || caseStudyEl;
+        if (insertAfter && insertAfter.parentNode) {
+          insertAfter.parentNode.insertBefore(phasesWrap, insertAfter);
+        }
+      }
+
+      // --- Case study timeline (if present) ---
+      const hasCaseStudy = !hasPhases && project.caseStudy && project.caseStudy.timeline && project.caseStudy.timeline.length;
 
       if (hasCaseStudy && caseStudyEl) {
         // Hide the standard hero/media layout so the case study is the star
@@ -665,18 +735,24 @@
         // Populate standard media grid from project.media
         if (standardMedia) {
           (project.media || []).forEach(function (m) {
-            if (m.type !== 'image' || !m.src) return;
-            const fig = el('figure', {}, [el('img', { src: m.src, alt: m.alt || project.title, loading: 'lazy' })]);
-            // Skip adding the cover twice if it's repeated as the first media entry
-            const isDuplicateCover = (m.src === project.cover) && projectLb.length && projectLb[0].src === project.cover;
-            let idx;
-            if (isDuplicateCover) {
-              idx = 0;
-            } else {
-              idx = pushLb(m.src, m.alt || project.title, m.alt || project.title);
+            if (!m.src) return;
+            if (m.type === 'video') {
+              const fig = el('figure', { class: 'media-video' });
+              const vid = document.createElement('video');
+              vid.src = m.src;
+              vid.setAttribute('controls', '');
+              vid.setAttribute('playsinline', '');
+              vid.setAttribute('preload', 'metadata');
+              fig.appendChild(vid);
+              if (m.alt || m.caption) fig.appendChild(el('figcaption', { text: m.alt || m.caption }));
+              standardMedia.appendChild(fig);
+            } else if (m.type === 'image') {
+              const fig = el('figure', {}, [el('img', { src: m.src, alt: m.alt || project.title, loading: 'lazy' })]);
+              const isDuplicateCover = (m.src === project.cover) && projectLb.length && projectLb[0].src === project.cover;
+              const idx = isDuplicateCover ? 0 : pushLb(m.src, m.alt || project.title, m.alt || project.title);
+              wireLightbox(fig, idx);
+              standardMedia.appendChild(fig);
             }
-            wireLightbox(fig, idx);
-            standardMedia.appendChild(fig);
           });
         }
       }

@@ -256,7 +256,7 @@
       "description": "Placeholder description. A Unity-based simulation that lets users run iterated prisoner's dilemma tournaments against a set of canonical strategies.",
       "cover": "",
       "media": [],
-      "featured": true
+      "featured": false
     },
     {
       "id": "interactive-archive-walk",
@@ -273,16 +273,17 @@
       "featured": false
     },
     {
-      "id": "interactive-game-placeholder-01",
-      "title": "Game Prototype, Placeholder",
+      "id": "noctoflora",
+      "title": "Noctoflora",
       "category": "interactive",
       "type": "game",
-      "year": "2024",
-      "tools": ["Unity", "C#"],
-      "tags": ["Unity", "C#", "Game Design"],
-      "summary": "Short-form game prototype.",
-      "description": "Placeholder description.",
-      "cover": "",
+      "year": "2026",
+      "tools": ["Unity", "C#", "Blender", "Substance Painter"],
+      "tags": ["Unity", "C#", "Blender", "3D", "Game Design"],
+      "role": "Game Designer, 3D Artist, Programmer",
+      "summary": "A 3D exploration game built around bioluminescent flora and atmospheric world-building.",
+      "description": "Noctoflora is a 3D exploration game centred on a glowing, bioluminescent world. The project spans concept sketching, 3D modelling, texturing and animation through to full game implementation in Unity.",
+      "cover": "assets/interactive/Noctoflora/logo-full.jpg",
       "media": [],
       "featured": false
     },
