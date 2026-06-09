@@ -1,0 +1,303 @@
+/* =========================================================================
+   Portfolio editor — UI chrome. Injected only by the local editor server.
+   Namespaced under .jj-ed* so it never collides with the site's own styles.
+   ========================================================================= */
+
+:root {
+  --jj-ed-accent: #2f6bff;
+  --jj-ed-bg: #14161c;
+  --jj-ed-panel: #1b1e26;
+  --jj-ed-line: #2c3140;
+  --jj-ed-text: #e8eaf0;
+  --jj-ed-muted: #9aa3b5;
+  --jj-ed-good: #2bbf7a;
+  --jj-ed-warn: #f0a338;
+}
+
+/* --- Toolbar ------------------------------------------------------------ */
+.jj-ed-bar {
+  position: fixed;
+  z-index: 2147483600;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--jj-ed-bg);
+  color: var(--jj-ed-text);
+  border: 1px solid var(--jj-ed-line);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  font: 500 13px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+}
+.jj-ed-bar__brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--jj-ed-muted);
+  padding-right: 4px;
+  border-right: 1px solid var(--jj-ed-line);
+}
+.jj-ed-bar__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--jj-ed-accent);
+}
+.jj-ed-btn {
+  appearance: none;
+  border: 1px solid var(--jj-ed-line);
+  background: var(--jj-ed-panel);
+  color: var(--jj-ed-text);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, border-color 0.12s;
+}
+.jj-ed-btn:hover { background: #232734; }
+.jj-ed-btn--primary { background: var(--jj-ed-accent); border-color: var(--jj-ed-accent); color: #fff; }
+.jj-ed-btn--primary:hover { filter: brightness(1.08); }
+.jj-ed-btn--primary:disabled { opacity: 0.5; cursor: default; filter: none; }
+.jj-ed-btn--danger { color: #ff6b6b; }
+
+.jj-ed-status {
+  font-size: 12px;
+  color: var(--jj-ed-muted);
+  min-width: 92px;
+  text-align: right;
+}
+.jj-ed-status--dirty { color: var(--jj-ed-warn); }
+.jj-ed-status--good { color: var(--jj-ed-good); }
+.jj-ed-status--err { color: #ff6b6b; }
+
+/* --- Edit mode affordances on the page --------------------------------- */
+body.jj-editing [data-edit-id],
+body.jj-editing [data-bind] {
+  outline: 1px dashed rgba(47, 107, 255, 0.55);
+  outline-offset: 3px;
+  border-radius: 2px;
+  cursor: text;
+  transition: outline-color 0.12s, background 0.12s;
+}
+body.jj-editing [data-edit-id]:hover,
+body.jj-editing [data-bind]:hover {
+  outline-color: var(--jj-ed-accent);
+  background: rgba(47, 107, 255, 0.06);
+}
+body.jj-editing [contenteditable="true"]:focus {
+  outline: 2px solid var(--jj-ed-accent);
+  outline-offset: 3px;
+  background: rgba(47, 107, 255, 0.08);
+}
+
+/* prevent edited links / cards from navigating while editing */
+body.jj-editing a.jj-ed-noclick { cursor: text; }
+
+/* --- Image drop zones --------------------------------------------------- */
+body.jj-editing .jj-ed-dropzone {
+  position: relative;
+  cursor: pointer;
+}
+.jj-ed-drop-hint {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  font: 600 11px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(20, 22, 28, 0.55);
+  opacity: 0;
+  transition: opacity 0.12s;
+  pointer-events: none;
+}
+body.jj-editing .jj-ed-dropzone:hover .jj-ed-drop-hint { opacity: 1; }
+body.jj-editing .jj-ed-dropzone.jj-ed-dragover .jj-ed-drop-hint {
+  opacity: 1;
+  background: rgba(47, 107, 255, 0.65);
+}
+body.jj-editing .jj-ed-dropzone.jj-ed-dragover { outline: 3px solid var(--jj-ed-accent); outline-offset: -3px; }
+
+/* --- Side panel (projects) --------------------------------------------- */
+.jj-ed-panel {
+  position: fixed;
+  z-index: 2147483590;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(440px, 96vw);
+  background: var(--jj-ed-panel);
+  color: var(--jj-ed-text);
+  border-left: 1px solid var(--jj-ed-line);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  font: 400 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+}
+.jj-ed-panel.open { transform: translateX(0); }
+.jj-ed-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--jj-ed-line);
+}
+.jj-ed-panel__head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.jj-ed-panel__body { overflow-y: auto; padding: 12px 14px; flex: 1; }
+.jj-ed-close { background: none; border: none; color: var(--jj-ed-muted); font-size: 22px; cursor: pointer; line-height: 1; }
+.jj-ed-close:hover { color: var(--jj-ed-text); }
+
+.jj-ed-group__title {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--jj-ed-muted);
+  margin: 14px 0 6px;
+}
+.jj-ed-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px;
+  border: 1px solid var(--jj-ed-line);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: #161922;
+}
+.jj-ed-row.jj-ed-dragging { opacity: 0.4; }
+.jj-ed-row.jj-ed-drop-before { box-shadow: 0 -2px 0 var(--jj-ed-accent); }
+.jj-ed-row.jj-ed-drop-after { box-shadow: 0 2px 0 var(--jj-ed-accent); }
+.jj-ed-handle { cursor: grab; color: var(--jj-ed-muted); font-size: 15px; user-select: none; }
+.jj-ed-row__title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jj-ed-row__title small { display: block; color: var(--jj-ed-muted); font-size: 11px; }
+.jj-ed-iconbtn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--jj-ed-muted);
+  border-radius: 6px;
+  padding: 3px 7px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.jj-ed-iconbtn:hover { color: var(--jj-ed-text); border-color: var(--jj-ed-line); }
+.jj-ed-iconbtn--danger:hover { color: #ff6b6b; }
+
+/* --- Form -------------------------------------------------------------- */
+.jj-ed-form label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--jj-ed-muted);
+  margin: 12px 0 4px;
+}
+.jj-ed-form input[type="text"],
+.jj-ed-form input[type="number"],
+.jj-ed-form select,
+.jj-ed-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #11131a;
+  border: 1px solid var(--jj-ed-line);
+  color: var(--jj-ed-text);
+  border-radius: 7px;
+  padding: 8px 10px;
+  font: inherit;
+}
+.jj-ed-form textarea { resize: vertical; min-height: 70px; }
+.jj-ed-form input:focus,
+.jj-ed-form select:focus,
+.jj-ed-form textarea:focus { outline: none; border-color: var(--jj-ed-accent); }
+.jj-ed-form .jj-ed-check { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.jj-ed-form .jj-ed-check input { width: auto; }
+.jj-ed-form .jj-ed-check label { margin: 0; }
+
+.jj-ed-form__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--jj-ed-line);
+}
+.jj-ed-form__actions .jj-ed-btn { flex: 1; justify-content: center; text-align: center; }
+
+.jj-ed-hint { color: var(--jj-ed-muted); font-size: 11px; margin-top: 4px; }
+
+.jj-ed-thumbrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.jj-ed-thumb {
+  position: relative;
+  width: 72px;
+  height: 54px;
+  border: 1px solid var(--jj-ed-line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #11131a;
+}
+.jj-ed-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.jj-ed-thumb button {
+  position: absolute;
+  top: 2px; right: 2px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 2px 4px;
+}
+.jj-ed-addmedia {
+  width: 72px; height: 54px;
+  border: 1px dashed var(--jj-ed-line);
+  border-radius: 6px;
+  color: var(--jj-ed-muted);
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+.jj-ed-addmedia:hover { color: var(--jj-ed-text); border-color: var(--jj-ed-accent); }
+
+/* hidden file input */
+.jj-ed-fileinput { display: none; }
+
+/* toast */
+.jj-ed-toast {
+  position: fixed;
+  z-index: 2147483600;
+  left: 50%;
+  bottom: 78px;
+  transform: translateX(-50%);
+  background: var(--jj-ed-bg);
+  color: var(--jj-ed-text);
+  border: 1px solid var(--jj-ed-line);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font: 500 12px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.jj-ed-toast.show { opacity: 1; }
+.jj-ed-toast--err { border-color: #ff6b6b; color: #ff9b9b; }
