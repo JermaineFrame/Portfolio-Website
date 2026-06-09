@@ -129,8 +129,8 @@
         media.appendChild(el('span', { class: 'track', text: TRACK_LABELS[track] }));
 
         const body = el('div', { class: 'featured-body' });
-        body.appendChild(el('div', { class: 'title', text: pick.title }));
-        if (pick.summary) body.appendChild(el('div', { class: 'summary', text: pick.summary }));
+        body.appendChild(el('div', { class: 'title', text: pick.title, 'data-bind': pick.id + ':title' }));
+        if (pick.summary) body.appendChild(el('div', { class: 'summary', text: pick.summary, 'data-bind': pick.id + ':summary' }));
         body.appendChild(el('div', { class: 'go', text: 'Open \u2192' }));
 
         card.appendChild(media);
@@ -169,13 +169,13 @@
         body.appendChild(el('span', { class: 'type', text: (RESEARCH_TYPE_LABELS[p.type] || p.type || 'Entry') }));
         if (p.link) {
           const a = el('a', { href: p.link, target: '_blank', rel: 'noopener' });
-          a.appendChild(el('h3', { class: 'title', text: p.title }));
+          a.appendChild(el('h3', { class: 'title', text: p.title, 'data-bind': p.id + ':title' }));
           body.appendChild(a);
         } else {
-          body.appendChild(el('h3', { class: 'title', text: p.title }));
+          body.appendChild(el('h3', { class: 'title', text: p.title, 'data-bind': p.id + ':title' }));
         }
-        if (p.venue) body.appendChild(el('div', { class: 'venue', text: p.venue }));
-        if (p.summary) body.appendChild(el('p', { class: 'summary', text: p.summary }));
+        if (p.venue) body.appendChild(el('div', { class: 'venue', text: p.venue, 'data-bind': p.id + ':venue' }));
+        if (p.summary) body.appendChild(el('p', { class: 'summary', text: p.summary, 'data-bind': p.id + ':summary' }));
         if (p.methodology) {
           const meth = el('div', { class: 'methodology' });
           meth.appendChild(el('strong', { text: 'Methodology' }));
@@ -253,8 +253,8 @@
 
         const body = el('div', { class: 'interactive-body' });
         body.appendChild(el('span', { class: 'kind', text: (INTERACTIVE_TYPE_LABELS[p.type] || p.type || 'Entry') + '  /  ' + (p.year || '') }));
-        body.appendChild(el('h3', { class: 'title', text: p.title }));
-        if (p.summary) body.appendChild(el('p', { class: 'summary', text: p.summary }));
+        body.appendChild(el('h3', { class: 'title', text: p.title, 'data-bind': p.id + ':title' }));
+        if (p.summary) body.appendChild(el('p', { class: 'summary', text: p.summary, 'data-bind': p.id + ':summary' }));
 
         const tags = p.tags || p.tools || [];
         if (tags.length) {
@@ -328,8 +328,8 @@
         class: 'num',
         text: padIndex(index) + ' / ' + (project.subtype || project.subcategory || '').toUpperCase()
       }));
-      textWrap.appendChild(el('div', { class: 'title', text: project.title }));
-      if (project.summary) textWrap.appendChild(el('div', { class: 'summary', text: project.summary }));
+      textWrap.appendChild(el('div', { class: 'title', text: project.title, 'data-bind': project.id + ':title' }));
+      if (project.summary) textWrap.appendChild(el('div', { class: 'summary', text: project.summary, 'data-bind': project.id + ':summary' }));
       body.appendChild(textWrap);
       body.appendChild(el('span', { class: 'go', text: 'OPEN \u2192' }));
 
