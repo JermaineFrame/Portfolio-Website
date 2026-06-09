@@ -168,13 +168,9 @@
 
         const body = el('div', { class: 'body' });
         body.appendChild(el('span', { class: 'type', text: (RESEARCH_TYPE_LABELS[p.type] || p.type || 'Entry') }));
-        if (p.link) {
-          const a = el('a', { href: p.link, target: '_blank', rel: 'noopener' });
-          a.appendChild(el('h3', { class: 'title', text: p.title, 'data-bind': p.id + ':title' }));
-          body.appendChild(a);
-        } else {
-          body.appendChild(el('h3', { class: 'title', text: p.title, 'data-bind': p.id + ':title' }));
-        }
+        const titleLink = el('a', { href: detailHref });
+        titleLink.appendChild(el('h3', { class: 'title', text: p.title, 'data-bind': p.id + ':title' }));
+        body.appendChild(titleLink);
         if (p.venue) body.appendChild(el('div', { class: 'venue', text: p.venue, 'data-bind': p.id + ':venue' }));
         if (p.summary) body.appendChild(el('p', { class: 'summary', text: p.summary, 'data-bind': p.id + ':summary' }));
         if (p.methodology) {
@@ -597,7 +593,19 @@
       // Hero image (used for both layouts)
       const heroImg = document.getElementById('projectHeroImg');
       const heroFigure = document.getElementById('projectHero');
-      if (project.cover) {
+      if (project.embed) {
+        // Embed an interactive piece directly in the hero frame
+        heroImg.remove();
+        if (heroFigure) {
+          const iframe = el('iframe', {
+            src: project.embed,
+            title: project.title,
+            allowfullscreen: '',
+            loading: 'lazy'
+          });
+          heroFigure.appendChild(iframe);
+        }
+      } else if (project.cover) {
         heroImg.src = project.cover;
         heroImg.alt = project.title;
         const heroIdx = pushLb(project.cover, project.title, project.title);
