@@ -256,7 +256,7 @@
       "description": "Placeholder description. A Unity-based simulation that lets users run iterated prisoner's dilemma tournaments against a set of canonical strategies.",
       "cover": "",
       "media": [],
-      "featured": true
+      "featured": false
     },
     {
       "id": "interactive-archive-walk",
@@ -273,18 +273,60 @@
       "featured": false
     },
     {
-      "id": "interactive-game-placeholder-01",
-      "title": "Game Prototype, Placeholder",
+      "id": "noctoflora",
+      "title": "Noctoflora",
       "category": "interactive",
       "type": "game",
-      "year": "2024",
-      "tools": ["Unity", "C#"],
-      "tags": ["Unity", "C#", "Game Design"],
-      "summary": "Short-form game prototype.",
-      "description": "Placeholder description.",
-      "cover": "",
+      "year": "2026",
+      "tools": ["Unity", "C#", "Blender", "Substance Painter"],
+      "tags": ["Unity", "C#", "Blender", "3D", "Game Design"],
+      "role": "Game Designer, 3D Artist, Programmer",
+      "summary": "A 3D exploration game built around bioluminescent flora and atmospheric world-building.",
+      "description": "Noctoflora is a 3D exploration game centred on a glowing, bioluminescent world. The project spans concept sketching, 3D modelling, texturing and animation through to full game implementation in Unity.",
+      "cover": "assets/interactive/Noctoflora/logo-full.jpg",
       "media": [],
-      "featured": false
+      "featured": true,
+      "phases": [
+        {
+          "id": "sketch",
+          "eyebrow": "Phase 01",
+          "title": "Idea & Sketch",
+          "description": "Early explorations establishing the visual direction, colour palette and character design language for Noctoflora.",
+          "items": [
+            { "type": "image", "src": "assets/interactive/Noctoflora/sketch-01.png",      "caption": "Initial sketch — establishing shape language and proportions" },
+            { "type": "image", "src": "assets/interactive/Noctoflora/concept-draft1.png", "caption": "Draft 1 — first colour and environment pass" },
+            { "type": "image", "src": "assets/interactive/Noctoflora/concept-draft2.png", "caption": "Draft 2 — refined silhouette and lighting concept" }
+          ]
+        },
+        {
+          "id": "creation",
+          "eyebrow": "Phase 02",
+          "title": "Creation",
+          "description": "3D modelling, texturing and animation — taking the concept from flat sketches into a rigged, textured game-ready asset.",
+          "items": [
+            { "type": "image", "src": "assets/interactive/Noctoflora/model-draft1.png",    "caption": "3D model — first blocking pass in Blender" },
+            { "type": "video", "src": "assets/interactive/Noctoflora/draft-vid2.mp4",      "caption": "Model turntable — reviewing geometry from all angles" },
+            { "type": "image", "src": "assets/interactive/Noctoflora/texturing-draft.png", "caption": "Texturing — bioluminescent material pass in Substance Painter" },
+            { "type": "video", "src": "assets/interactive/Noctoflora/draft-vid3.mp4",      "caption": "Animation test — early rig and locomotion cycle" },
+            { "type": "image", "src": "assets/interactive/Noctoflora/inprogram-draft.png", "caption": "In-engine placement — asset brought into Unity for first review" }
+          ]
+        },
+        {
+          "id": "final",
+          "eyebrow": "Phase 03",
+          "title": "Final Game",
+          "description": "The assembled game — environment, lighting, gameplay systems and final footage captured in-engine.",
+          "items": [
+            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-01.png",         "caption": "Environment — early world layout" },
+            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-02.png",         "caption": "Lighting pass — atmospheric bioluminescent glow" },
+            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-03.png",         "caption": "Scene composition — final camera framing" },
+            { "type": "video", "src": "assets/interactive/Noctoflora/gameplay-starting-area.mp4","caption": "Starting area walkthrough" },
+            { "type": "video", "src": "assets/interactive/Noctoflora/gameplay-vid1.mp4",         "caption": "Gameplay capture — exploration sequence" },
+            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-04.png",         "caption": "Final scene — polished in-engine screenshot" },
+            { "type": "video", "src": "assets/interactive/Noctoflora/gameplay-vid2.mp4",         "caption": "Gameplay capture — environment showcase" }
+          ]
+        }
+      ]
     }
 
   ]
