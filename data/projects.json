@@ -65,19 +65,19 @@
     },
     {
       "id": "school-magazine",
-      "title": "School Magazine",
+      "title": "Design Work: Florida Southern College",
       "category": "visual",
       "subcategory": "graphic",
       "subtype": "editorial",
-      "year": "2023",
-      "role": "Art Director, Designer",
+      "year": "2022 - 2026",
+      "role": "Designer",
       "tools": [
         "InDesign",
-        "Photoshop"
+        "Photoshop",
+        "Illustrator"
       ],
-      "summary": "Magazine identity and interior layout system.",
-      "description": "A school magazine redesign covering masthead, grid, typographic hierarchy and interior spreads.",
-      "cover": "assets/graphic-design/School%20Magazine/Header-image-magazine.jpg",
+      "summary": "Collection of works done for Florida Southern College as the graphic designer",
+      "cover": "assets/uploads/school-magazine/COD_Presentation-2526_02.jpg",
       "media": [
         {
           "type": "image",
@@ -88,9 +88,20 @@
           "type": "image",
           "src": "assets/graphic-design/School%20Magazine/school-magazine-inside.png",
           "alt": "Magazine interior spreads"
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/school-magazine/COD_Presentation-2526_13-14-15.jpg",
+          "alt": "Design Work: Florida Southern College"
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/school-magazine/PXL_20260609_173244106.jpg",
+          "alt": "Design Work: Florida Southern College"
         }
       ],
-      "featured": false
+      "featured": false,
+      "tags": []
     },
     {
       "id": "web-redesign",
@@ -104,7 +115,7 @@
         "Figma",
         "Photoshop"
       ],
-      "summary": "Responsive website concept with desktop and mobile mockups.",
+      "summary": "Responsive website concept with desktop and mobile mock-ups.",
       "description": "A responsive website redesign exploring navigation, hierarchy and component reuse across desktop and mobile.",
       "cover": "assets/graphic-design/Web%20Redesign/Header-Web%20Mockup.jpg",
       "media": [
@@ -335,101 +346,49 @@
       "featured": false
     },
     {
+      "id": "research-conference-paper",
+      "title": "Procedural Rhetoric and Impermanence in Gaming, Save the Games: A Digital Preservation Symposium 2026",
+      "category": "research",
+      "type": "Presentation",
+      "year": "2026",
+      "venue": "The Strong Museum of Play, Rochester, NY",
+      "summary": "Conference paper on interactive methods in humanities research.",
+      "description": "Placeholder conference paper entry.",
+      "methodology": "Case study methodology grounded in three longitudinal site visits.",
+      "featured": false,
+      "tools": [],
+      "tags": [],
+      "cover": "",
+      "media": []
+    },
+    {
+      "id": "research-visualisation-01",
+      "title": "Mapping Intellectual Networks in Texts & Technology: A Gephi Network Analysis",
+      "category": "research",
+      "type": "visualization",
+      "year": "2026",
+      "venue": "Virtual",
+      "summary": "Interactive network visualisation of citation patterns in digital humanities journals.",
+      "description": "To better understand the intellectual throughlines across texts in the digital humanities field, we used the computational network-analysis tool, Gephi. Using Gephi, we worked with 23 major texts to identify and visualize three areas of overlap: shared scholarly themes, author networks, and disciplinary intersections. Through algorithms and statistical measures in Gephi, such as modularity measurement, centrality measures, and clustering analysis, we mapped the deeper connections that shape the field.",
+      "methodology": "Bibliometric network analysis built on OpenAlex metadata, rendered with D3.js force-directed graphs.",
+      "featured": false,
+      "tools": [],
+      "tags": [],
+      "cover": "",
+      "media": []
+    },
+    {
       "id": "research-dh-thesis",
-      "title": "Digital Archive Methodologies in Contested Spaces",
+      "title": "Procedural obsolescence and Impermanence in gaming",
       "category": "research",
       "type": "publication",
       "year": "2026",
       "venue": "PhD Thesis, in preparation",
-      "summary": "Doctoral research on computational methods for archiving contested cultural heritage.",
+      "summary": "Doctoral research on methods for archiving contested cultural heritage in video games.",
       "description": "Ongoing doctoral research examining the intersection of digital humanities methodologies and the preservation of contested cultural heritage across three UK-based case studies.",
       "methodology": "Mixed-methods design combining archival ethnography, computational text analysis (topic modeling, NER) and participatory co-design sessions with community archivists.",
       "link": "",
       "featured": true
-    },
-    {
-      "id": "research-visualisation-01",
-      "title": "Network Visualisation, Placeholder",
-      "category": "research",
-      "type": "visualization",
-      "year": "2025",
-      "venue": "Internal working paper",
-      "summary": "Interactive network visualisation of citation patterns in digital humanities journals.",
-      "description": "Placeholder description for a research visualisation entry.",
-      "methodology": "Bibliometric network analysis built on OpenAlex metadata, rendered with D3.js force-directed graphs.",
-      "link": "",
-      "featured": false
-    },
-    {
-      "id": "research-conference-paper",
-      "title": "Conference Paper, Placeholder",
-      "category": "research",
-      "type": "publication",
-      "year": "2024",
-      "venue": "DH Conference, Placeholder",
-      "summary": "Conference paper on interactive methods in humanities research.",
-      "description": "Placeholder conference paper entry.",
-      "methodology": "Case study methodology grounded in three longitudinal site visits.",
-      "link": "",
-      "featured": false
-    },
-    {
-      "id": "research-project-01",
-      "title": "Oral History Platform, Placeholder",
-      "category": "research",
-      "type": "project",
-      "year": "2024",
-      "venue": "Funded research project",
-      "summary": "Platform for community-led oral history collection and annotation.",
-      "description": "Placeholder research project entry.",
-      "methodology": "Participatory action research with a co-designed annotation schema, deployed via a lightweight web interface.",
-      "link": "",
-      "featured": false
-    },
-    {
-      "id": "interactive-game-theory",
-      "title": "Prisoner's Dilemma, Playable Simulation",
-      "category": "interactive",
-      "type": "simulation",
-      "year": "2025",
-      "tools": [
-        "Unity",
-        "C#"
-      ],
-      "tags": [
-        "Game Theory",
-        "Unity",
-        "C#",
-        "Simulation"
-      ],
-      "summary": "Playable simulation exploring classical game theory scenarios.",
-      "description": "Placeholder description. A Unity-based simulation that lets users run iterated prisoner's dilemma tournaments against a set of canonical strategies.",
-      "cover": "",
-      "media": [],
-      "featured": false
-    },
-    {
-      "id": "interactive-archive-walk",
-      "title": "Digital Archive Walkthrough",
-      "category": "interactive",
-      "type": "experience",
-      "year": "2024",
-      "tools": [
-        "Unity",
-        "C#",
-        "Digital Archiving"
-      ],
-      "tags": [
-        "Unity",
-        "C#",
-        "Digital Archiving",
-        "3D"
-      ],
-      "summary": "Immersive 3D walkthrough of a digitally reconstructed archive space.",
-      "description": "Placeholder description. A first-person interactive walkthrough of a digitally reconstructed historical archive, built as a companion to the DH research track.",
-      "cover": "",
-      "media": [],
-      "featured": false
     },
     {
       "id": "noctoflora",
@@ -451,7 +410,7 @@
         "Game Design"
       ],
       "role": "Game Designer, 3D Artist, Programmer",
-      "summary": "A 3D exploration game built around bioluminescent flora and atmospheric world-building.",
+      "summary": "A 3D metroidvania game built around bioluminescent flora and atmospheric world-building.",
       "description": "Noctoflora is a 3D exploration game centred on a glowing, bioluminescent world. The project spans concept sketching, 3D modelling, texturing and animation through to full game implementation in Unity.",
       "cover": "assets/interactive/Noctoflora/logo-full.jpg",
       "media": [],
@@ -465,7 +424,7 @@
           "items": [
             {
               "type": "image",
-              "src": "assets/interactive/Noctoflora/sketch-01.png",
+              "src": "assets/uploads/noctoflora/Screenshot_2024-12-05_145711.png",
               "caption": "Initial sketch — establishing shape language and proportions"
             },
             {
@@ -494,7 +453,7 @@
             {
               "type": "video",
               "src": "assets/interactive/Noctoflora/draft-vid2.mp4",
-              "caption": "Model turntable — reviewing geometry from all angles"
+              "caption": "Draft Environment - Movement Test"
             },
             {
               "type": "image",

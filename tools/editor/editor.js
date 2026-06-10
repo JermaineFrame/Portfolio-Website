@@ -211,7 +211,13 @@
     const bind = el.getAttribute('data-img-bind') || '';
     const path = bind.slice(bind.indexOf(':') + 1);
     const video = allowsVideo(path);
-    el.appendChild(h('span', { class: 'jj-ed-drop-hint', text: video ? 'Drop image/video · or click' : 'Drop image · or click' }));
+    const hint = h('span', { class: 'jj-ed-drop-hint', text: video ? 'Drop image/video · or click' : 'Drop image · or click' });
+    // Lightbox-able images get an expand chip: clicking it falls through to
+    // the page's own lightbox handler so captions can be edited in-place.
+    if (el.querySelector('img') && (el.closest('.project-detail') || el.classList.contains('masonry-item'))) {
+      hint.appendChild(h('button', { class: 'jj-ed-expand', type: 'button', title: 'Open lightbox (edit caption there)' }, '⤢ Expand'));
+    }
+    el.appendChild(hint);
 
     const pick = () => {
       const input = h('input', { type: 'file', accept: video ? 'image/*,video/*' : 'image/*', class: 'jj-ed-fileinput' });
@@ -225,6 +231,7 @@
     el.addEventListener('click', (e) => {
       if (!state.editing) return;
       if (e.target.closest && e.target.closest('[data-bind],[data-edit-id],figcaption')) return; // let captions be text-edited
+      if (e.target.closest && e.target.closest('.jj-ed-expand')) return; // fall through to the lightbox
       e.preventDefault();
       e.stopImmediatePropagation();
       pick();
@@ -293,7 +300,7 @@
   // ---- scan & (re)wire the page -----------------------------------------
   function scan() {
     $$('[data-edit-id]').forEach(wireStatic);
-    $$('[data-bind]').forEach((el) => wireBind(el, /(:|\.)(title|year|role|eyebrow|caption)$/.test(el.getAttribute('data-bind') || '')));
+    $$('[data-bind]').forEach((el) => wireBind(el, /(:|\.)(title|year|role|eyebrow|caption|alt)$/.test(el.getAttribute('data-bind') || '')));
     wireProjectDetail();
     $$('[data-img-bind]').forEach(wireImgSwap);
     if (state.editing) applyEditing();
@@ -489,12 +496,14 @@
     f.tags = input((p.tags || []).join(', '), { placeholder: 'comma separated' });
     f.featured = h('input', Object.assign({ type: 'checkbox' }, p.featured ? { checked: '' } : {}));
 
-    // cover + media thumbs
+    // cover + media + phase-media thumbs
     const coverWrap = h('div', { class: 'jj-ed-thumbrow' });
     const mediaWrap = h('div', { class: 'jj-ed-thumbrow' });
+    const phasesWrap = h('div', {});
     const draft = {
       cover: p.cover || '',
-      media: (p.media || []).map((m) => Object.assign({}, m))
+      media: (p.media || []).map((m) => Object.assign({}, m)),
+      phases: JSON.parse(JSON.stringify(p.phases || []))
     };
     const uploadDir = 'uploads/' + (p.id || slugify(f.title.value || 'project'));
 
@@ -510,13 +519,34 @@
     function renderMedia() {
       mediaWrap.innerHTML = '';
       draft.media.forEach((m, i) => {
-        mediaWrap.appendChild(h('div', { class: 'jj-ed-thumb' },
-          h('img', { src: m.src, alt: m.alt || '' }),
-          h('button', { title: 'Remove', onClick: () => { draft.media.splice(i, 1); renderMedia(); } }, '×')));
+        mediaWrap.appendChild(mediaThumb(m, () => { draft.media.splice(i, 1); renderMedia(); }));
       });
-      mediaWrap.appendChild(makeUpload(async (path) => { draft.media.push({ type: 'image', src: path, alt: f.title.value }); renderMedia(); }, uploadDir));
+      mediaWrap.appendChild(makeUpload(async (path, file) => {
+        const type = file && /^video\//.test(file.type) ? 'video' : 'image';
+        draft.media.push({ type: type, src: path, alt: f.title.value });
+        renderMedia();
+      }, uploadDir, 'image/*,video/*'));
     }
-    renderCover(); renderMedia();
+    function renderPhases() {
+      phasesWrap.innerHTML = '';
+      draft.phases.forEach((phase, pi) => {
+        const row = h('div', { class: 'jj-ed-thumbrow' });
+        (phase.items || []).forEach((item, ii) => {
+          row.appendChild(mediaThumb(item, () => { phase.items.splice(ii, 1); renderPhases(); }));
+        });
+        row.appendChild(makeUpload(async (path, file) => {
+          const type = file && /^video\//.test(file.type) ? 'video' : 'image';
+          phase.items = phase.items || [];
+          phase.items.push({ type: type, src: path, caption: '' });
+          renderPhases();
+        }, uploadDir, 'image/*,video/*'));
+        phasesWrap.appendChild(h('div', {},
+          h('label', {}, (phase.eyebrow || ('Phase ' + (pi + 1))) + ' — ' + (phase.title || '')),
+          row,
+          h('p', { class: 'jj-ed-hint' }, 'Captions are edited on the project page (click the caption, or ⤢ Expand an image).')));
+      });
+    }
+    renderCover(); renderMedia(); renderPhases();
 
     const form = h('div', { class: 'jj-ed-form' },
       field('Title', f.title),
@@ -536,6 +566,7 @@
       h('div', { class: 'jj-ed-check' }, f.featured, h('label', {}, 'Featured (shown on home grid)')),
       field('Cover image', coverWrap),
       field('Media gallery', mediaWrap),
+      draft.phases.length ? field('Phase media (game showcase)', phasesWrap) : null,
       h('div', { class: 'jj-ed-form__actions' },
         h('button', { class: 'jj-ed-btn jj-ed-btn--primary', onClick: commit }, isNew ? 'Add project' : 'Apply'),
         h('button', { class: 'jj-ed-btn', onClick: renderList }, 'Cancel'))
@@ -562,6 +593,7 @@
       obj.featured = f.featured.checked;
       obj.cover = draft.cover;
       obj.media = draft.media;
+      if (draft.phases.length) obj.phases = draft.phases;
       if (isNew) state.projects.push(obj);
       reindex();
       markData();
@@ -574,19 +606,26 @@
     panelBody.appendChild(h('button', { class: 'jj-ed-btn', onClick: renderList }, '← Back to list'));
     panelBody.appendChild(form);
   }
-  function makeUpload(onPath, dir) {
-    const btn = h('button', { class: 'jj-ed-addmedia', title: 'Upload image' }, '+');
+  function makeUpload(onDone, dir, accept) {
+    const btn = h('button', { class: 'jj-ed-addmedia', title: 'Upload' }, '+');
     btn.addEventListener('click', () => {
-      const input = h('input', { type: 'file', accept: 'image/*', class: 'jj-ed-fileinput' });
+      const input = h('input', { type: 'file', accept: accept || 'image/*', class: 'jj-ed-fileinput' });
       input.addEventListener('change', async () => {
         if (!input.files[0]) return;
-        try { btn.textContent = '…'; const path = await uploadFile(input.files[0], dir); await onPath(path); }
+        try { btn.textContent = '…'; const path = await uploadFile(input.files[0], dir); await onDone(path, input.files[0]); }
         catch (err) { toast('Upload failed: ' + err.message, true); }
         finally { btn.textContent = '+'; input.remove(); }
       });
       document.body.appendChild(input); input.click();
     });
     return btn;
+  }
+  function mediaThumb(m, onRemove) {
+    const isVideo = m.type === 'video';
+    return h('div', { class: 'jj-ed-thumb', title: m.caption || m.alt || '' },
+      isVideo ? h('video', { src: m.src, muted: '', preload: 'metadata' }) : h('img', { src: m.src, alt: m.alt || '' }),
+      isVideo ? h('span', { class: 'jj-ed-thumb__kind', text: 'VID' }) : null,
+      h('button', { title: 'Remove', onClick: onRemove }, '×'));
   }
   function csv(s) { return s.split(',').map((x) => x.trim()).filter(Boolean); }
   function setOrDelete(obj, key, val) { if (val) obj[key] = val; else delete obj[key]; }

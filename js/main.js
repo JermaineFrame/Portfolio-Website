@@ -402,7 +402,8 @@
         tile.addEventListener('click', function (e) {
           e.preventDefault();
           openLightbox(realTiles.map(function (x) {
-            return { src: x.src, alt: x.alt, title: x.title, subcaption: 'PHOTOGRAPHY' };
+            const capBind = x.bind && /\.src$/.test(x.bind) ? x.bind.replace(/\.src$/, '.alt') : null;
+            return { src: x.src, alt: x.alt, title: x.alt || x.title, subcaption: 'PHOTOGRAPHY', bind: capBind };
           }), index);
         });
         photoMasonry.appendChild(tile);
@@ -478,7 +479,19 @@
       ? cur.subcaption
       : (SUBCATEGORY_LABELS[cur.subcategory] || cur.subcategory || '').toUpperCase();
     const counter = lbItems.length > 1 ? (String(lbIndex + 1).padStart(2, '0') + ' / ' + String(lbItems.length).padStart(2, '0')) : '';
-    cap.textContent = [leading, cur.title || '', counter].filter(Boolean).join('  \u00B7  ');
+    // Title rendered as its own span so the editor can bind it to the
+    // underlying media field (cur.bind) for in-lightbox caption editing.
+    cap.innerHTML = '';
+    if (leading) cap.appendChild(document.createTextNode(leading));
+    if (cur.title) {
+      if (leading) cap.appendChild(document.createTextNode('  \u00B7  '));
+      const titleAttrs = cur.bind ? { text: cur.title, 'data-bind': cur.bind } : { text: cur.title };
+      cap.appendChild(el('span', titleAttrs));
+    }
+    if (counter) {
+      if (leading || cur.title) cap.appendChild(document.createTextNode('  \u00B7  '));
+      cap.appendChild(document.createTextNode(counter));
+    }
   }
   function closeLightbox() {
     if (!lightbox) return;
@@ -508,6 +521,8 @@
     });
     document.addEventListener('keydown', function (e) {
       if (lightbox.hidden) return;
+      // Don't navigate while typing in an editable caption (editor mode)
+      if (e.target && e.target.isContentEditable && e.key !== 'Escape') return;
       if (e.key === 'Escape') closeLightbox();
       else if (e.key === 'ArrowRight') nextLightbox();
       else if (e.key === 'ArrowLeft')  prevLightbox();
@@ -581,9 +596,9 @@
       // Collected list of this project's images for the lightbox
       const projectLb = [];
       const projectSubcap = (SUBCATEGORY_LABELS[project.subcategory] || (TRACK_LABELS[project.category] || '')).toUpperCase();
-      function pushLb(src, alt, title) {
+      function pushLb(src, alt, title, bind) {
         if (!src) return -1;
-        projectLb.push({ src: src, alt: alt || project.title, title: title || project.title, subcaption: projectSubcap });
+        projectLb.push({ src: src, alt: alt || project.title, title: title || project.title, subcaption: projectSubcap, bind: bind || null });
         return projectLb.length - 1;
       }
       function wireLightbox(target, myIdx) {
@@ -679,7 +694,7 @@
               fig.appendChild(vid);
             } else {
               const img = el('img', { src: item.src, alt: item.caption || project.title, loading: 'lazy' });
-              const idx = pushLb(item.src, item.caption || project.title, item.caption || project.title);
+              const idx = pushLb(item.src, item.caption || project.title, item.caption || project.title, itemBind + '.caption');
               fig.appendChild(img);
               wireLightbox(fig, idx);
             }
@@ -770,7 +785,7 @@
             } else if (m.type === 'image') {
               const fig = el('figure', { 'data-img-bind': mBind + '.src' }, [el('img', { src: m.src, alt: m.alt || project.title, loading: 'lazy' })]);
               const isDuplicateCover = (m.src === project.cover) && projectLb.length && projectLb[0].src === project.cover;
-              const idx = isDuplicateCover ? 0 : pushLb(m.src, m.alt || project.title, m.alt || project.title);
+              const idx = isDuplicateCover ? 0 : pushLb(m.src, m.alt || project.title, m.alt || project.title, mBind + '.alt');
               wireLightbox(fig, idx);
               standardMedia.appendChild(fig);
             }
