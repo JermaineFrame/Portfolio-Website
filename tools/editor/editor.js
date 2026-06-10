@@ -143,14 +143,17 @@
     el.addEventListener('paste', plainPaste);
     if (single) el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
     el.addEventListener('focusout', () => {
-      const [id, field] = (el.getAttribute('data-bind') || '').split(':');
+      const bind = el.getAttribute('data-bind') || '';
+      const sep = bind.indexOf(':');
+      const id = bind.slice(0, sep);
+      const field = bind.slice(sep + 1);          // may be a dotted path, e.g. phases.0.title
       const proj = state.byId[id];
-      if (!proj) return;
+      if (!proj || !field) return;
       const val = field === 'tools' || field === 'tags'
         ? el.textContent.split(',').map((s) => s.trim()).filter(Boolean)
         : el.textContent.trim();
-      const before = JSON.stringify(proj[field] || '');
-      proj[field] = val;
+      const before = JSON.stringify(getDeep(proj, field) || '');
+      setDeep(proj, field, val);
       if (JSON.stringify(val) !== before) markData();
     });
   }
@@ -190,61 +193,96 @@
     for (let i = 0; i < keys.length - 1; i++) { o[keys[i]] = o[keys[i]] || {}; o = o[keys[i]]; }
     o[keys[keys.length - 1]] = val;
   }
-
-  // ---- image dropzones ---------------------------------------------------
-  function projectIdFor(el) {
-    const a = el.closest('a[href*="id="]');
-    if (a) {
-      const m = /[?&]id=([^&]+)/.exec(a.getAttribute('href') || '');
-      if (m) return decodeURIComponent(m[1]);
-    }
-    if (el.closest('#projectHero')) return new URLSearchParams(location.search).get('id');
-    return null;
+  function getDeep(obj, dotted) {
+    return dotted.split('.').reduce((o, k) => (o == null ? o : o[k]), obj);
   }
-  function wireDropzone(el) {
-    if (el.dataset.jjWired) return;
-    el.dataset.jjWired = '1';
+
+  // ---- image swap (any [data-img-bind] container) -------------------------
+  // The bind is "<projectId>:<dotted.path>" pointing at the src/image field.
+  // media[] and phase items[] slots also accept video; their sibling `type`
+  // field is kept in sync with what was uploaded.
+  function allowsVideo(path) {
+    return /(^|\.)(media|items)\.\d+\.src$/.test(path);
+  }
+  function wireImgSwap(el) {
+    if (el.dataset.jjImgWired) return;
+    el.dataset.jjImgWired = '1';
     el.classList.add('jj-ed-dropzone');
-    el.appendChild(h('span', { class: 'jj-ed-drop-hint', text: 'Drop image · or click' }));
+    const bind = el.getAttribute('data-img-bind') || '';
+    const path = bind.slice(bind.indexOf(':') + 1);
+    const video = allowsVideo(path);
+    el.appendChild(h('span', { class: 'jj-ed-drop-hint', text: video ? 'Drop image/video · or click' : 'Drop image · or click' }));
 
     const pick = () => {
-      const input = h('input', { type: 'file', accept: 'image/*', class: 'jj-ed-fileinput' });
-      input.addEventListener('change', () => { if (input.files[0]) handleDrop(el, input.files[0]); });
+      const input = h('input', { type: 'file', accept: video ? 'image/*,video/*' : 'image/*', class: 'jj-ed-fileinput' });
+      input.addEventListener('change', () => { if (input.files[0]) handleSwap(el, input.files[0]); });
       document.body.appendChild(input);
       input.click();
       setTimeout(() => input.remove(), 0);
     };
-    el.addEventListener('click', (e) => { if (state.editing) { e.preventDefault(); e.stopPropagation(); pick(); } });
+    // Capture phase so we beat the lightbox / card-link handlers main.js
+    // attached earlier on the same element.
+    el.addEventListener('click', (e) => {
+      if (!state.editing) return;
+      if (e.target.closest && e.target.closest('[data-bind],[data-edit-id],figcaption')) return; // let captions be text-edited
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      pick();
+    }, true);
     el.addEventListener('dragover', (e) => { if (!state.editing) return; e.preventDefault(); el.classList.add('jj-ed-dragover'); });
     el.addEventListener('dragleave', () => el.classList.remove('jj-ed-dragover'));
     el.addEventListener('drop', (e) => {
       if (!state.editing) return;
-      e.preventDefault(); el.classList.remove('jj-ed-dragover');
+      e.preventDefault(); e.stopImmediatePropagation(); el.classList.remove('jj-ed-dragover');
       const file = e.dataTransfer.files && e.dataTransfer.files[0];
-      if (file) handleDrop(el, file);
-    });
+      if (file) handleSwap(el, file);
+    }, true);
   }
-  async function handleDrop(el, file) {
-    const id = projectIdFor(el);
-    if (!id || !state.byId[id]) { toast('Could not link this pane to a project', true); return; }
-    if (!/^image\//.test(file.type)) { toast('Please choose an image file', true); return; }
+  async function handleSwap(el, file) {
+    const bind = el.getAttribute('data-img-bind') || '';
+    const sep = bind.indexOf(':');
+    const id = bind.slice(0, sep);
+    const path = bind.slice(sep + 1);
+    const proj = state.byId[id];
+    if (!proj || !path) { toast('Could not link this pane to a project', true); return; }
+
+    const isVideo = /^video\//.test(file.type);
+    const isImage = /^image\//.test(file.type);
+    const video = allowsVideo(path);
+    if (!isImage && !(isVideo && video)) {
+      toast(video ? 'Please choose an image or video file' : 'Please choose an image file', true);
+      return;
+    }
     try {
       setStatus('Uploading…');
-      const path = await uploadFile(file, 'uploads/' + id);
-      const proj = state.byId[id];
-      proj.cover = path;
-      if (Array.isArray(proj.media)) {
-        if (!proj.media.some((m) => m.src === path)) proj.media.unshift({ type: 'image', src: path, alt: proj.title });
-      } else {
-        proj.media = [{ type: 'image', src: path, alt: proj.title }];
+      const newSrc = await uploadFile(file, 'uploads/' + id);
+      setDeep(proj, path, newSrc);
+      // keep the media/phase item's type in sync with the uploaded kind
+      if (video) {
+        const item = getDeep(proj, path.replace(/\.src$/, ''));
+        if (item && typeof item === 'object') item.type = isVideo ? 'video' : 'image';
+      }
+      // first image on an empty project also seeds the media gallery
+      if (path === 'cover' && Array.isArray(proj.media) && proj.media.length === 0) {
+        proj.media.push({ type: 'image', src: newSrc, alt: proj.title });
       }
       markData();
-      // instant visual feedback
-      el.querySelectorAll('img').forEach((n) => n.remove());
-      el.querySelectorAll('.placeholder-mark').forEach((n) => n.remove());
-      el.classList.remove('placeholder');
-      el.insertBefore(h('img', { src: path, alt: proj.title }), el.firstChild);
-      toast('Image uploaded — Save to keep it');
+
+      // instant visual feedback where we can; reload on Save otherwise
+      const img = el.querySelector('img');
+      const vid = el.querySelector('video');
+      if (isVideo && vid) {
+        vid.src = newSrc;
+      } else if (isImage && img) {
+        img.src = newSrc;
+      } else if (isImage && !img && !vid) {
+        el.querySelectorAll('.placeholder-mark').forEach((n) => n.remove());
+        el.classList.remove('placeholder', 'is-placeholder');
+        el.insertBefore(h('img', { src: newSrc, alt: proj.title }), el.firstChild);
+      } else {
+        state.needsReload = true; // image<->video swap: layout differs, rebuild on Save
+      }
+      toast('Uploaded — press Save to keep it');
       refreshStatus();
     } catch (err) {
       toast('Upload failed: ' + err.message, true);
@@ -255,11 +293,9 @@
   // ---- scan & (re)wire the page -----------------------------------------
   function scan() {
     $$('[data-edit-id]').forEach(wireStatic);
-    $$('[data-bind]').forEach((el) => wireBind(el, /:(title|year|role)$/.test(el.getAttribute('data-bind') || '')));
+    $$('[data-bind]').forEach((el) => wireBind(el, /(:|\.)(title|year|role|eyebrow|caption)$/.test(el.getAttribute('data-bind') || '')));
     wireProjectDetail();
-    [
-      '.featured-media', '.interactive-media', '.project-card-media', '#projectHero'
-    ].forEach((sel) => $$(sel).forEach(wireDropzone));
+    $$('[data-img-bind]').forEach(wireImgSwap);
     if (state.editing) applyEditing();
   }
   function applyEditing() {

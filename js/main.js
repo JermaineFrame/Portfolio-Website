@@ -120,7 +120,7 @@
         const href = 'project.html?id=' + encodeURIComponent(pick.id);
         const card = el('a', { href: href, class: 'featured-card', 'data-track': track });
 
-        const media = el('div', { class: 'featured-media' + (pick.cover ? '' : ' placeholder') });
+        const media = el('div', { class: 'featured-media' + (pick.cover ? '' : ' placeholder'), 'data-img-bind': pick.id + ':cover' });
         if (pick.cover) {
           media.appendChild(el('img', { src: pick.cover, alt: pick.title, loading: 'lazy' }));
         } else {
@@ -243,7 +243,7 @@
         const href = 'project.html?id=' + encodeURIComponent(p.id);
         const card = el('a', { href: href, class: 'interactive-card' });
 
-        const media = el('div', { class: 'interactive-media' + (p.cover ? '' : ' placeholder') });
+        const media = el('div', { class: 'interactive-media' + (p.cover ? '' : ' placeholder'), 'data-img-bind': p.id + ':cover' });
         if (p.cover) {
           media.appendChild(el('img', { src: p.cover, alt: p.title, loading: 'lazy' }));
         } else {
@@ -314,7 +314,7 @@
       const card = el('a', { href: href, class: 'project-card' });
       if (!project.cover) card.setAttribute('data-empty', 'true');
 
-      const media = el('div', { class: 'project-card-media' + (project.cover ? '' : ' placeholder') });
+      const media = el('div', { class: 'project-card-media' + (project.cover ? '' : ' placeholder'), 'data-img-bind': project.id + ':cover' });
       if (project.cover) {
         media.appendChild(el('img', { src: project.cover, alt: project.title, loading: 'lazy' }));
       } else {
@@ -358,12 +358,16 @@
       photos.forEach(function (p) {
         const media = (p.media && p.media.length) ? p.media
                     : (p.cover ? [{ type: 'image', src: p.cover, alt: p.title }] : []);
+        const fromMedia = !!(p.media && p.media.length);
         if (media.length === 0) {
-          tiles.push({ projectId: p.id, title: p.title, src: '', alt: p.title, subtype: p.subtype || '' });
+          tiles.push({ projectId: p.id, title: p.title, src: '', alt: p.title, subtype: p.subtype || '', bind: p.id + ':cover' });
         } else {
-          media.forEach(function (m) {
+          media.forEach(function (m, mi) {
             if (m.type !== 'image' || !m.src) return;
-            tiles.push({ projectId: p.id, title: p.title, src: m.src, alt: m.alt || p.title, subtype: p.subtype || '' });
+            tiles.push({
+              projectId: p.id, title: p.title, src: m.src, alt: m.alt || p.title, subtype: p.subtype || '',
+              bind: fromMedia ? (p.id + ':media.' + mi + '.src') : (p.id + ':cover')
+            });
           });
         }
       });
@@ -377,7 +381,7 @@
 
       tiles.forEach(function (t) {
         if (!t.src) {
-          const ph = el('div', { class: 'masonry-item is-placeholder' });
+          const ph = el('div', { class: 'masonry-item is-placeholder', 'data-img-bind': t.bind });
           ph.appendChild(el('span', { class: 'placeholder-mark', text: 'PLACEHOLDER' }));
           photoMasonry.appendChild(ph);
           return;
@@ -385,7 +389,8 @@
         const tile = el('button', {
           class: 'masonry-item',
           type: 'button',
-          'aria-label': 'View ' + t.title
+          'aria-label': 'View ' + t.title,
+          'data-img-bind': t.bind
         });
         tile.appendChild(el('img', { src: t.src, alt: t.alt, loading: 'lazy' }));
         const cap = el('span', { class: 'm-cap' });
@@ -620,6 +625,9 @@
           heroFigure.appendChild(el('span', { class: 'placeholder-mark', text: 'NO MEDIA YET' }));
         }
       }
+      if (!project.embed && heroFigure) {
+        heroFigure.setAttribute('data-img-bind', project.id + ':cover');
+      }
 
       // --- Phases layout (game showcase) ---
       const caseStudyEl = document.getElementById('caseStudy');
@@ -634,7 +642,7 @@
         projectLb.length = 0;
 
         // Game hero banner
-        const gameHero = el('figure', { class: 'game-hero' });
+        const gameHero = el('figure', { class: 'game-hero', 'data-img-bind': project.id + ':cover' });
         gameHero.appendChild(el('img', { src: project.cover, alt: project.title }));
         const projectArticle = document.querySelector('.project-detail .container');
         const backLink = document.getElementById('backLink');
@@ -644,21 +652,23 @@
 
         const phasesWrap = el('div', { class: 'game-phases' });
 
-        project.phases.forEach(function (phase) {
+        project.phases.forEach(function (phase, pi) {
+          const bindBase = project.id + ':phases.' + pi;
           const section = el('section', { class: 'game-phase' });
 
           const header = el('div', { class: 'game-phase-header' });
-          if (phase.eyebrow) header.appendChild(el('span', { class: 'eyebrow', text: phase.eyebrow }));
-          header.appendChild(el('h2', { text: phase.title }));
-          if (phase.description) header.appendChild(el('p', { text: phase.description }));
+          if (phase.eyebrow) header.appendChild(el('span', { class: 'eyebrow', text: phase.eyebrow, 'data-bind': bindBase + '.eyebrow' }));
+          header.appendChild(el('h2', { text: phase.title, 'data-bind': bindBase + '.title' }));
+          if (phase.description) header.appendChild(el('p', { text: phase.description, 'data-bind': bindBase + '.description' }));
           section.appendChild(header);
 
           const grid = el('div', { class: 'phase-media-grid' });
 
-          (phase.items || []).forEach(function (item) {
+          (phase.items || []).forEach(function (item, ii) {
+            const itemBind = bindBase + '.items.' + ii;
             const isVideo = item.type === 'video';
             const wrapper = el('div', { class: 'phase-media-item' + (isVideo ? ' full-width' : '') });
-            const fig = el('figure', {});
+            const fig = el('figure', { 'data-img-bind': itemBind + '.src' });
 
             if (isVideo) {
               const vid = document.createElement('video');
@@ -675,7 +685,7 @@
             }
 
             if (item.caption) {
-              fig.appendChild(el('figcaption', { text: item.caption }));
+              fig.appendChild(el('figcaption', { text: item.caption, 'data-bind': itemBind + '.caption' }));
             }
             wrapper.appendChild(fig);
             grid.appendChild(wrapper);
@@ -711,15 +721,17 @@
         } else if (outcomeImg) {
           outcomeImg.remove();
         }
+        if (outcomeFig) outcomeFig.setAttribute('data-img-bind', project.id + ':caseStudy.outcome.image');
         document.getElementById('caseOutcomeTitle').textContent = outcome.title || 'Final Outcome';
         document.getElementById('caseOutcomeBody').textContent  = outcome.text  || project.description || '';
 
         const timelineEl = document.getElementById('caseTimeline');
         timelineEl.innerHTML = '';
-        project.caseStudy.timeline.forEach(function (entry) {
+        project.caseStudy.timeline.forEach(function (entry, ti) {
+          const tlBind = project.id + ':caseStudy.timeline.' + ti;
           const item = el('li', { class: 'timeline-item' });
 
-          const media = el('figure', { class: 'timeline-media' });
+          const media = el('figure', { class: 'timeline-media', 'data-img-bind': tlBind + '.image' });
           if (entry.image) {
             media.appendChild(el('img', { src: entry.image, alt: entry.title || '', loading: 'lazy' }));
             const idx = pushLb(entry.image, entry.title || '', (entry.step ? 'STEP ' + entry.step + '  \u00B7  ' : '') + (entry.title || ''));
@@ -731,8 +743,8 @@
 
           const textWrap = el('div', { class: 'timeline-text' });
           textWrap.appendChild(el('span', { class: 'step', text: 'STEP ' + (entry.step || '') }));
-          textWrap.appendChild(el('h4', { class: 't-title', text: entry.title || '' }));
-          if (entry.text) textWrap.appendChild(el('p', { class: 't-body', text: entry.text }));
+          textWrap.appendChild(el('h4', { class: 't-title', text: entry.title || '', 'data-bind': tlBind + '.title' }));
+          if (entry.text) textWrap.appendChild(el('p', { class: 't-body', text: entry.text, 'data-bind': tlBind + '.text' }));
           item.appendChild(textWrap);
 
           timelineEl.appendChild(item);
@@ -742,20 +754,21 @@
       } else {
         // Populate standard media grid from project.media
         if (standardMedia) {
-          (project.media || []).forEach(function (m) {
+          (project.media || []).forEach(function (m, mi) {
             if (!m.src) return;
+            const mBind = project.id + ':media.' + mi;
             if (m.type === 'video') {
-              const fig = el('figure', { class: 'media-video' });
+              const fig = el('figure', { class: 'media-video', 'data-img-bind': mBind + '.src' });
               const vid = document.createElement('video');
               vid.src = m.src;
               vid.setAttribute('controls', '');
               vid.setAttribute('playsinline', '');
               vid.setAttribute('preload', 'metadata');
               fig.appendChild(vid);
-              if (m.alt || m.caption) fig.appendChild(el('figcaption', { text: m.alt || m.caption }));
+              if (m.alt || m.caption) fig.appendChild(el('figcaption', { text: m.alt || m.caption, 'data-bind': mBind + '.alt' }));
               standardMedia.appendChild(fig);
             } else if (m.type === 'image') {
-              const fig = el('figure', {}, [el('img', { src: m.src, alt: m.alt || project.title, loading: 'lazy' })]);
+              const fig = el('figure', { 'data-img-bind': mBind + '.src' }, [el('img', { src: m.src, alt: m.alt || project.title, loading: 'lazy' })]);
               const isDuplicateCover = (m.src === project.cover) && projectLb.length && projectLb[0].src === project.cover;
               const idx = isDuplicateCover ? 0 : pushLb(m.src, m.alt || project.title, m.alt || project.title);
               wireLightbox(fig, idx);
