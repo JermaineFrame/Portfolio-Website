@@ -1,6 +1,5 @@
 {
   "projects": [
-
     {
       "id": "book-design",
       "title": "Into The Unknown, Book Design",
@@ -9,13 +8,25 @@
       "subtype": "editorial",
       "year": "2020",
       "role": "Designer, Illustrator",
-      "tools": ["InDesign", "Photoshop", "Illustrator"],
+      "tools": [
+        "InDesign",
+        "Photoshop",
+        "Illustrator"
+      ],
       "summary": "Cover, interior layout and identity for an illustrated book.",
       "description": "A self-initiated book project titled Into The Unknown, covering cover design, interior layout, and a series of full-bleed illustrated spreads. The identity leans on bold type and quiet negative space to let the imagery carry the narrative.",
       "cover": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png",
       "media": [
-        { "type": "image", "src": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png", "alt": "Book cover mockup" },
-        { "type": "image", "src": "assets/graphic-design/Book%20Design/book_breakdown_02_300.png", "alt": "Interior spread breakdown" }
+        {
+          "type": "image",
+          "src": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png",
+          "alt": "Book cover mockup"
+        },
+        {
+          "type": "image",
+          "src": "assets/graphic-design/Book%20Design/book_breakdown_02_300.png",
+          "alt": "Interior spread breakdown"
+        }
       ],
       "featured": true,
       "caseStudy": {
@@ -52,7 +63,6 @@
         ]
       }
     },
-
     {
       "id": "school-magazine",
       "title": "School Magazine",
@@ -61,17 +71,27 @@
       "subtype": "editorial",
       "year": "2023",
       "role": "Art Director, Designer",
-      "tools": ["InDesign", "Photoshop"],
+      "tools": [
+        "InDesign",
+        "Photoshop"
+      ],
       "summary": "Magazine identity and interior layout system.",
       "description": "A school magazine redesign covering masthead, grid, typographic hierarchy and interior spreads.",
       "cover": "assets/graphic-design/School%20Magazine/Header-image-magazine.jpg",
       "media": [
-        { "type": "image", "src": "assets/graphic-design/School%20Magazine/Header-image-magazine.jpg", "alt": "Magazine cover mockup" },
-        { "type": "image", "src": "assets/graphic-design/School%20Magazine/school-magazine-inside.png", "alt": "Magazine interior spreads" }
+        {
+          "type": "image",
+          "src": "assets/graphic-design/School%20Magazine/Header-image-magazine.jpg",
+          "alt": "Magazine cover mockup"
+        },
+        {
+          "type": "image",
+          "src": "assets/graphic-design/School%20Magazine/school-magazine-inside.png",
+          "alt": "Magazine interior spreads"
+        }
       ],
       "featured": false
     },
-
     {
       "id": "web-redesign",
       "title": "Web Redesign",
@@ -80,18 +100,32 @@
       "subtype": "digital",
       "year": "2023",
       "role": "UI Designer",
-      "tools": ["Figma", "Photoshop"],
+      "tools": [
+        "Figma",
+        "Photoshop"
+      ],
       "summary": "Responsive website concept with desktop and mobile mockups.",
       "description": "A responsive website redesign exploring navigation, hierarchy and component reuse across desktop and mobile.",
       "cover": "assets/graphic-design/Web%20Redesign/Header-Web%20Mockup.jpg",
       "media": [
-        { "type": "image", "src": "assets/graphic-design/Web%20Redesign/Header-Web%20Mockup.jpg", "alt": "Desktop hero mockup" },
-        { "type": "image", "src": "assets/graphic-design/Web%20Redesign/Mockup.png", "alt": "Full desktop mockup" },
-        { "type": "image", "src": "assets/graphic-design/Web%20Redesign/Mobile-Mockup.jpg", "alt": "Mobile mockup" }
+        {
+          "type": "image",
+          "src": "assets/graphic-design/Web%20Redesign/Header-Web%20Mockup.jpg",
+          "alt": "Desktop hero mockup"
+        },
+        {
+          "type": "image",
+          "src": "assets/graphic-design/Web%20Redesign/Mockup.png",
+          "alt": "Full desktop mockup"
+        },
+        {
+          "type": "image",
+          "src": "assets/graphic-design/Web%20Redesign/Mobile-Mockup.jpg",
+          "alt": "Mobile mockup"
+        }
       ],
       "featured": false
     },
-
     {
       "id": "restaurant-menu",
       "title": "Restaurant Menu",
@@ -100,17 +134,27 @@
       "subtype": "print",
       "year": "2020",
       "role": "Designer",
-      "tools": ["InDesign", "Illustrator"],
+      "tools": [
+        "InDesign",
+        "Illustrator"
+      ],
       "summary": "Menu system built around bold type and a tactile print feel.",
       "description": "Menu and identity work for a restaurant concept.",
       "cover": "assets/graphic-design/restaurant%20Menu/Header-Menu_MU.png",
       "media": [
-        { "type": "image", "src": "assets/graphic-design/restaurant%20Menu/Header-Menu_MU.png", "alt": "Menu hero mockup" },
-        { "type": "image", "src": "assets/graphic-design/restaurant%20Menu/Menu_Mockup.jpg", "alt": "Menu mockup in use" }
+        {
+          "type": "image",
+          "src": "assets/graphic-design/restaurant%20Menu/Header-Menu_MU.png",
+          "alt": "Menu hero mockup"
+        },
+        {
+          "type": "image",
+          "src": "assets/graphic-design/restaurant%20Menu/Menu_Mockup.jpg",
+          "alt": "Menu mockup in use"
+        }
       ],
       "featured": false
     },
-
     {
       "id": "dragon-sword",
       "title": "Dragon Sword",
@@ -119,18 +163,32 @@
       "subtype": "prop",
       "year": "2023",
       "role": "3D Modeler, Texture Artist",
-      "tools": ["Blender", "Substance Painter"],
+      "tools": [
+        "Blender",
+        "Substance Painter"
+      ],
       "summary": "High-detail fantasy sword with sculpted hilt ornamentation.",
       "description": "A fantasy weapon study focused on ornate metalwork and dramatic material contrast.",
       "cover": "assets/3d-modeling/Dragon%20Sword/Dragon%20Sword%20RenderNew.jpg",
       "media": [
-        { "type": "image", "src": "assets/3d-modeling/Dragon%20Sword/Dragon%20Sword%20RenderNew.jpg", "alt": "Full render of the dragon sword" },
-        { "type": "image", "src": "assets/3d-modeling/Dragon%20Sword/Close%20Up%20Hilt.jpg", "alt": "Close up of the hilt" },
-        { "type": "image", "src": "assets/3d-modeling/Dragon%20Sword/Close%20Up%20Hilt2.jpg", "alt": "Alternate close up of the hilt" }
+        {
+          "type": "image",
+          "src": "assets/3d-modeling/Dragon%20Sword/Dragon%20Sword%20RenderNew.jpg",
+          "alt": "Full render of the dragon sword"
+        },
+        {
+          "type": "image",
+          "src": "assets/3d-modeling/Dragon%20Sword/Close%20Up%20Hilt.jpg",
+          "alt": "Close up of the hilt"
+        },
+        {
+          "type": "image",
+          "src": "assets/3d-modeling/Dragon%20Sword/Close%20Up%20Hilt2.jpg",
+          "alt": "Alternate close up of the hilt"
+        }
       ],
       "featured": true
     },
-
     {
       "id": "kitchen-render",
       "title": "Modular Kitchen",
@@ -139,17 +197,27 @@
       "subtype": "environment",
       "year": "2021",
       "role": "Environment Artist",
-      "tools": ["Blender", "Cycles"],
+      "tools": [
+        "Blender",
+        "Cycles"
+      ],
       "summary": "Studio kitchen environment, material and lighting study.",
       "description": "An interior environment built to test modular asset workflows and physically based lighting.",
       "cover": "assets/3d-modeling/3D%20Kitchen/Kitchen-Render.jpg",
       "media": [
-        { "type": "image", "src": "assets/3d-modeling/3D%20Kitchen/Kitchen-Render.jpg", "alt": "Final lit render of the kitchen" },
-        { "type": "image", "src": "assets/3d-modeling/3D%20Kitchen/Kitchen-solid.jpg", "alt": "Solid shaded working view of the kitchen" }
+        {
+          "type": "image",
+          "src": "assets/3d-modeling/3D%20Kitchen/Kitchen-Render.jpg",
+          "alt": "Final lit render of the kitchen"
+        },
+        {
+          "type": "image",
+          "src": "assets/3d-modeling/3D%20Kitchen/Kitchen-solid.jpg",
+          "alt": "Solid shaded working view of the kitchen"
+        }
       ],
       "featured": false
     },
-
     {
       "id": "stylized-character",
       "title": "Melody, Stylized Character",
@@ -158,16 +226,22 @@
       "subtype": "character",
       "year": "2023",
       "role": "Character Artist",
-      "tools": ["Blender", "ZBrush"],
+      "tools": [
+        "Blender",
+        "ZBrush"
+      ],
       "summary": "Stylised character portrait exploring shape language.",
       "description": "A stylised 3D character study focused on strong silhouette, readable shape language and expressive posing.",
       "cover": "assets/3d-modeling/Stylized%20Character/Melody.jpg",
       "media": [
-        { "type": "image", "src": "assets/3d-modeling/Stylized%20Character/Melody.jpg", "alt": "Final character render" }
+        {
+          "type": "image",
+          "src": "assets/3d-modeling/Stylized%20Character/Melody.jpg",
+          "alt": "Final character render"
+        }
       ],
       "featured": false
     },
-
     {
       "id": "cel-shaded-character",
       "title": "Yukanashi, Cel-Shaded Character",
@@ -176,21 +250,90 @@
       "subtype": "character",
       "year": "2023",
       "role": "Character Artist, Illustrator",
-      "tools": ["Blender", "Photoshop"],
+      "tools": [
+        "Blender",
+        "Photoshop"
+      ],
       "summary": "Cel-shaded 3D character with a full reference sheet.",
       "description": "A cel-shaded 3D character developed alongside a full reference sheet covering turnarounds, expression studies, costume variants and prop breakdowns.",
       "cover": "assets/3d-modeling/Cel-Shaded-Character/Yukanashi%20Character%20Sheet.jpg",
       "media": [
-        { "type": "image", "src": "assets/3d-modeling/Cel-Shaded-Character/Yukanashi%20Character%20Sheet.jpg", "alt": "Full character reference sheet" }
+        {
+          "type": "image",
+          "src": "assets/3d-modeling/Cel-Shaded-Character/Yukanashi%20Character%20Sheet.jpg",
+          "alt": "Full character reference sheet"
+        }
       ],
       "featured": false
     },
-
-    { "id": "photo-street-01",       "title": "Street, Placeholder",       "category": "visual", "subcategory": "photo", "subtype": "street",       "year": "2025", "role": "Photographer", "tools": ["35mm"],        "summary": "Street photography series.",  "description": "Placeholder.", "cover": "", "media": [], "featured": false },
-    { "id": "photo-portrait-01",     "title": "Portrait, Placeholder",     "category": "visual", "subcategory": "photo", "subtype": "portrait",     "year": "2024", "role": "Photographer", "tools": ["Studio"],      "summary": "Studio portrait sitting.",    "description": "Placeholder.", "cover": "", "media": [], "featured": false },
-    { "id": "photo-landscape-01",    "title": "Landscape, Placeholder",    "category": "visual", "subcategory": "photo", "subtype": "landscape",    "year": "2024", "role": "Photographer", "tools": ["Medium format"],"summary": "Coastal landscape study.",    "description": "Placeholder.", "cover": "", "media": [], "featured": false },
-    { "id": "photo-architecture-01", "title": "Architecture, Placeholder", "category": "visual", "subcategory": "photo", "subtype": "architecture", "year": "2023", "role": "Photographer", "tools": ["Digital"],     "summary": "Architectural photography.",  "description": "Placeholder.", "cover": "", "media": [], "featured": false },
-
+    {
+      "id": "photo-street-01",
+      "title": "Street, Placeholder",
+      "category": "visual",
+      "subcategory": "photo",
+      "subtype": "street",
+      "year": "2025",
+      "role": "Photographer",
+      "tools": [
+        "35mm"
+      ],
+      "summary": "Street photography series.",
+      "description": "Placeholder.",
+      "cover": "",
+      "media": [],
+      "featured": false
+    },
+    {
+      "id": "photo-portrait-01",
+      "title": "Portrait, Placeholder",
+      "category": "visual",
+      "subcategory": "photo",
+      "subtype": "portrait",
+      "year": "2024",
+      "role": "Photographer",
+      "tools": [
+        "Studio"
+      ],
+      "summary": "Studio portrait sitting.",
+      "description": "Placeholder.",
+      "cover": "",
+      "media": [],
+      "featured": false
+    },
+    {
+      "id": "photo-landscape-01",
+      "title": "Landscape, Placeholder",
+      "category": "visual",
+      "subcategory": "photo",
+      "subtype": "landscape",
+      "year": "2024",
+      "role": "Photographer",
+      "tools": [
+        "Medium format"
+      ],
+      "summary": "Coastal landscape study.",
+      "description": "Placeholder.",
+      "cover": "",
+      "media": [],
+      "featured": false
+    },
+    {
+      "id": "photo-architecture-01",
+      "title": "Architecture, Placeholder",
+      "category": "visual",
+      "subcategory": "photo",
+      "subtype": "architecture",
+      "year": "2023",
+      "role": "Photographer",
+      "tools": [
+        "Digital"
+      ],
+      "summary": "Architectural photography.",
+      "description": "Placeholder.",
+      "cover": "",
+      "media": [],
+      "featured": false
+    },
     {
       "id": "research-dh-thesis",
       "title": "Digital Archive Methodologies in Contested Spaces",
@@ -243,15 +386,22 @@
       "link": "",
       "featured": false
     },
-
     {
       "id": "interactive-game-theory",
       "title": "Prisoner's Dilemma, Playable Simulation",
       "category": "interactive",
       "type": "simulation",
       "year": "2025",
-      "tools": ["Unity", "C#"],
-      "tags": ["Game Theory", "Unity", "C#", "Simulation"],
+      "tools": [
+        "Unity",
+        "C#"
+      ],
+      "tags": [
+        "Game Theory",
+        "Unity",
+        "C#",
+        "Simulation"
+      ],
       "summary": "Playable simulation exploring classical game theory scenarios.",
       "description": "Placeholder description. A Unity-based simulation that lets users run iterated prisoner's dilemma tournaments against a set of canonical strategies.",
       "cover": "",
@@ -264,8 +414,17 @@
       "category": "interactive",
       "type": "experience",
       "year": "2024",
-      "tools": ["Unity", "C#", "Digital Archiving"],
-      "tags": ["Unity", "C#", "Digital Archiving", "3D"],
+      "tools": [
+        "Unity",
+        "C#",
+        "Digital Archiving"
+      ],
+      "tags": [
+        "Unity",
+        "C#",
+        "Digital Archiving",
+        "3D"
+      ],
       "summary": "Immersive 3D walkthrough of a digitally reconstructed archive space.",
       "description": "Placeholder description. A first-person interactive walkthrough of a digitally reconstructed historical archive, built as a companion to the DH research track.",
       "cover": "",
@@ -274,12 +433,23 @@
     },
     {
       "id": "noctoflora",
-      "title": "Noctoflora",
+      "title": "Noctoflora: Last Light, Vertical Slice",
       "category": "interactive",
       "type": "game",
       "year": "2026",
-      "tools": ["Unity", "C#", "Blender", "Substance Painter"],
-      "tags": ["Unity", "C#", "Blender", "3D", "Game Design"],
+      "tools": [
+        "Unity",
+        "C#",
+        "Blender",
+        "Substance Painter"
+      ],
+      "tags": [
+        "Unity",
+        "C#",
+        "Blender",
+        "3D",
+        "Game Design"
+      ],
       "role": "Game Designer, 3D Artist, Programmer",
       "summary": "A 3D exploration game built around bioluminescent flora and atmospheric world-building.",
       "description": "Noctoflora is a 3D exploration game centred on a glowing, bioluminescent world. The project spans concept sketching, 3D modelling, texturing and animation through to full game implementation in Unity.",
@@ -293,9 +463,21 @@
           "title": "Idea & Sketch",
           "description": "Early explorations establishing the visual direction, colour palette and character design language for Noctoflora.",
           "items": [
-            { "type": "image", "src": "assets/interactive/Noctoflora/sketch-01.png",      "caption": "Initial sketch — establishing shape language and proportions" },
-            { "type": "image", "src": "assets/interactive/Noctoflora/concept-draft1.png", "caption": "Draft 1 — first colour and environment pass" },
-            { "type": "image", "src": "assets/interactive/Noctoflora/concept-draft2.png", "caption": "Draft 2 — refined silhouette and lighting concept" }
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/sketch-01.png",
+              "caption": "Initial sketch — establishing shape language and proportions"
+            },
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/concept-draft1.png",
+              "caption": "Draft 1 — first colour and environment pass"
+            },
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/concept-draft2.png",
+              "caption": "Draft 2 — refined silhouette and lighting concept"
+            }
           ]
         },
         {
@@ -304,11 +486,31 @@
           "title": "Creation",
           "description": "3D modelling, texturing and animation — taking the concept from flat sketches into a rigged, textured game-ready asset.",
           "items": [
-            { "type": "image", "src": "assets/interactive/Noctoflora/model-draft1.png",    "caption": "3D model — first blocking pass in Blender" },
-            { "type": "video", "src": "assets/interactive/Noctoflora/draft-vid2.mp4",      "caption": "Model turntable — reviewing geometry from all angles" },
-            { "type": "image", "src": "assets/interactive/Noctoflora/texturing-draft.png", "caption": "Texturing — bioluminescent material pass in Substance Painter" },
-            { "type": "video", "src": "assets/interactive/Noctoflora/draft-vid3.mp4",      "caption": "Animation test — early rig and locomotion cycle" },
-            { "type": "image", "src": "assets/interactive/Noctoflora/inprogram-draft.png", "caption": "In-engine placement — asset brought into Unity for first review" }
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/model-draft1.png",
+              "caption": "3D model — first blocking pass in Blender"
+            },
+            {
+              "type": "video",
+              "src": "assets/interactive/Noctoflora/draft-vid2.mp4",
+              "caption": "Model turntable — reviewing geometry from all angles"
+            },
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/texturing-draft.png",
+              "caption": "Texturing — bioluminescent material pass in Substance Painter"
+            },
+            {
+              "type": "video",
+              "src": "assets/interactive/Noctoflora/draft-vid3.mp4",
+              "caption": "Animation test — early rig and locomotion cycle"
+            },
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/inprogram-draft.png",
+              "caption": "In-engine placement — asset brought into Unity for first review"
+            }
           ]
         },
         {
@@ -317,17 +519,44 @@
           "title": "Final Game",
           "description": "The assembled game — environment, lighting, gameplay systems and final footage captured in-engine.",
           "items": [
-            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-01.png",         "caption": "Environment — early world layout" },
-            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-02.png",         "caption": "Lighting pass — atmospheric bioluminescent glow" },
-            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-03.png",         "caption": "Scene composition — final camera framing" },
-            { "type": "video", "src": "assets/interactive/Noctoflora/gameplay-starting-area.mp4","caption": "Starting area walkthrough" },
-            { "type": "video", "src": "assets/interactive/Noctoflora/gameplay-vid1.mp4",         "caption": "Gameplay capture — exploration sequence" },
-            { "type": "image", "src": "assets/interactive/Noctoflora/screenshot-04.png",         "caption": "Final scene — polished in-engine screenshot" },
-            { "type": "video", "src": "assets/interactive/Noctoflora/gameplay-vid2.mp4",         "caption": "Gameplay capture — environment showcase" }
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/screenshot-01.png",
+              "caption": "Environment — early world layout"
+            },
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/screenshot-02.png",
+              "caption": "Lighting pass — atmospheric bioluminescent glow"
+            },
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/screenshot-03.png",
+              "caption": "Scene composition — final camera framing"
+            },
+            {
+              "type": "video",
+              "src": "assets/interactive/Noctoflora/gameplay-starting-area.mp4",
+              "caption": "Starting area walkthrough"
+            },
+            {
+              "type": "video",
+              "src": "assets/interactive/Noctoflora/gameplay-vid1.mp4",
+              "caption": "Gameplay capture — exploration sequence"
+            },
+            {
+              "type": "image",
+              "src": "assets/interactive/Noctoflora/screenshot-04.png",
+              "caption": "Final scene — polished in-engine screenshot"
+            },
+            {
+              "type": "video",
+              "src": "assets/interactive/Noctoflora/gameplay-vid2.mp4",
+              "caption": "Gameplay capture — environment showcase"
+            }
           ]
         }
       ]
     }
-
   ]
 }

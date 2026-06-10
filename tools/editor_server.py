@@ -21,6 +21,7 @@ import os
 import re
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import unquote
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, os.pardir))   # repo root (the site)
@@ -106,8 +107,13 @@ def replace_inner(html, edit_id, new_inner):
 
 
 def safe_join(base, rel):
-    """Resolve rel under base, refusing anything that escapes base."""
-    rel = rel.split("?")[0].lstrip("/")
+    """Resolve rel under base, refusing anything that escapes base.
+
+    URL-decodes the path first (matching how GitHub Pages serves the site),
+    so asset paths like assets/.../Book%20Design/cover.png resolve to the
+    on-disk "Book Design" directory.
+    """
+    rel = unquote(rel.split("?")[0]).lstrip("/")
     abs_path = os.path.abspath(os.path.join(base, rel))
     if abs_path != base and not abs_path.startswith(base + os.sep):
         return None
