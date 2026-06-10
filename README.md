@@ -1,50 +1,84 @@
 # Jermaine Johnson, Portfolio
 
-Static site. Vanilla HTML, CSS and a single JS file. Project content is driven by `data/projects.json`.
+Static site. Vanilla HTML, CSS and a single JS file. Project content is driven by `data/projects.json`. Deployed to GitHub Pages on push to `main`.
 
-## Preview locally
+## Edit the site (WYSIWYG editor)
 
-Because the site fetches `data/projects.json` at runtime, it needs to be served over HTTP, not opened with `file://`. From this folder, run any of:
+The repo ships with a local editor so you can build the portfolio directly in the browser — no install needed (uses the Python 3 that comes with macOS):
+
+```
+python3 tools/editor_server.py
+# then open http://localhost:4321
+```
+
+A toolbar appears at the bottom of every page:
+
+| Control | What it does |
+| --- | --- |
+| **Preview / Edit** | Toggle the editing outlines on and off |
+| **Projects** | Side panel: add, edit, delete and drag-reorder projects |
+| **Save** | Writes all pending changes to the real files |
+
+While in Edit mode:
+
+- **Click any outlined text** to edit it in place — headlines, taglines, about bio, project titles/summaries, phase descriptions, captions, timeline entries, even the template labels on detail pages.
+- **Click or drop onto any image** to replace it. Uploads land in `assets/uploads/<project>/` and the right field in `projects.json` updates automatically. Media-gallery and game-phase slots also accept video.
+- Nothing is written until you press **Save** — the status pill shows "Unsaved changes" until then.
+
+Changes go straight to your working files; review with `git diff`, then commit and push to deploy. The editor is injected by the local server only — **the deployed site never includes it**.
+
+Notes:
+
+- Different port: `PORT=4322 python3 tools/editor_server.py`
+- "Address already in use" means an editor is already running — just use the open tab.
+- `tools/editor-server.mjs` is an equivalent Node version, if Node is ever installed (`npm run edit`).
+
+## Preview locally (read-only)
+
+Because the site fetches `data/projects.json` at runtime, it needs to be served over HTTP, not opened with `file://`. The editor server above works; for a plain preview without the editing layer:
 
 ```
 python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-```
-npx serve .
-```
-
 ## File layout
 
 ```
-index.html              Home, hero + highlights rail + disciplines
-graphic-design.html     Category gallery (reads category="graphic")
-3d-modeling.html        Category gallery (reads category="3d")
-photography.html        Category gallery (reads category="photo")
+index.html              Home, hero + featured grid + tracks
+research.html           Research & Scholarship list (filter chips)
+interactive.html        Interactive & Games gallery
+visual-arts.html        Visual Arts hub (Graphic / 3D / Photography tabs)
+about.html              Bio, links, CV actions
 project.html            Detail template (reads ?id=<slug> from URL)
 cv.html                 CV PDF viewer
-data/projects.json      All project metadata
+data/projects.json      All project metadata (single source of truth)
 css/styles.css          Single stylesheet with all tokens and components
-js/main.js              Page-aware; drives nav, rail, gallery, detail
+js/main.js              Page-aware; drives nav, grids, galleries, detail
+tools/                  Local WYSIWYG editor (never deployed)
 assets/cv/              Jermaine_Johnson_CV.pdf lives here
-assets/3d-modeling/     3D project folders (one per project)
 assets/graphic-design/  Graphic design project folders
-assets/photography/     Photography project folders
+assets/3d-modeling/     3D project folders
+assets/interactive/     Interactive & games media (e.g. Noctoflora)
+assets/uploads/         Images/videos added through the editor
 SITEMAP.md              Sitemap, wireframes, design system
 ```
 
 ## Adding a new project
 
-1. Drop images into the right category folder, e.g. `assets/graphic-design/New Project/`.
+Easiest: run the editor (above), open **Projects → + Add project**, fill the form, drop in a cover, **Save**.
+
+By hand instead:
+
+1. Drop images into the right folder, e.g. `assets/graphic-design/New Project/`.
 2. Add an entry to `data/projects.json`:
 
 ```json
 {
   "id": "new-project",
   "title": "New Project",
-  "category": "graphic",
-  "subcategory": "branding",
+  "category": "visual",
+  "subcategory": "graphic",
   "year": "2026",
   "role": "Designer",
   "tools": ["Figma"],
@@ -58,7 +92,9 @@ SITEMAP.md              Sitemap, wireframes, design system
 }
 ```
 
-Valid categories: `graphic`, `3d`, `photo`. Set `featured: true` to appear in the home highlights rail. URL-encode spaces in paths (`%20`).
+Valid categories: `research`, `interactive`, `visual` (visual subcategories: `graphic`, `3d`, `photo`). Set `featured: true` to appear on the home featured grid. URL-encode spaces in paths (`%20`).
+
+Optional layouts on the detail page: a `caseStudy` object renders an outcome + process timeline; a `phases` array renders a game-showcase layout with image and video slots (see the Noctoflora entry for the shape); an `embed` URL renders a live iframe in the hero.
 
 ## Design tokens
 
