@@ -7,14 +7,14 @@
       "subcategory": "graphic",
       "subtype": "editorial",
       "year": "2020",
-      "role": "Designer, Illustrator",
+      "role": "Designer",
       "tools": [
         "InDesign",
         "Photoshop",
         "Illustrator"
       ],
       "summary": "Cover, interior layout and identity for an illustrated book.",
-      "description": "A self-initiated book project titled Into The Unknown, covering cover design, interior layout, and a series of full-bleed illustrated spreads. The identity leans on bold type and quiet negative space to let the imagery carry the narrative.",
+      "description": "Book project titled Into The Unknown, covering cover design, interior layout. The identity leans on bold type and quiet negative space to let the imagery carry the narrative.",
       "cover": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png",
       "media": [
         {
@@ -33,32 +33,32 @@
         "outcome": {
           "image": "assets/graphic-design/Book%20Design/HeaderImage-Book_Cover_MU_02.png",
           "title": "Final Cover",
-          "text": "The final cover pairs a centered display wordmark with a moody, large-format illustration. The choice of a single dominant image anchors the identity so the interior spreads can vary in pace without breaking the book's visual voice. The system was carried through to the interior breakdown, with consistent hierarchy, generous margins and restrained type sizing."
+          "text": "The final cover pairs a centered display wordmark with a moody, large-format Photoshop composition. The choice of a single dominant image anchors the identity so the interior spreads can vary in pace without breaking the book's visual voice. The system was carried through to the interior breakdown, with consistent hierarchy, generous margins and restrained type sizing."
         },
         "timeline": [
           {
             "step": "01",
             "title": "First Draft",
             "image": "assets/graphic-design/Book%20Design/into%20the%20unkown_draft-1.jpg",
-            "text": "Opening exploration. The first draft experimented with a landscape-led composition and a lighter typographic treatment. Useful for establishing scale but the title was reading as secondary to the illustration."
+            "text": "Opening exploration. The first draft experimented with a landscape-led composition."
           },
           {
             "step": "02",
             "title": "Second Iteration",
             "image": "assets/graphic-design/Book%20Design/into%20the%20unkown_draft2.png",
-            "text": "Shift to a heavier, stacked wordmark that could hold its own against the imagery. Introduced a darker color envelope so the cover would pull attention on a crowded shelf."
+            "text": "Brought into Blender for 3D rendering rather than a more traditional image-bash."
           },
           {
             "step": "03",
             "title": "Third Iteration",
             "image": "assets/graphic-design/Book%20Design/into%20the%20unkown_draft3.jpg",
-            "text": "Refined spacing, cleaned up the join between the title lockup and the illustration's negative space, and settled on the proportions that carried through to the final cover."
+            "text": "Refined spacing, thought of the join between the title lockup and the illustration's negative space, and settled on the proportions that carried through to the final cover."
           },
           {
             "step": "04",
-            "title": "Interior Breakdown",
+            "title": "Creation Breakdown",
             "image": "assets/graphic-design/Book%20Design/book_breakdown_02_300.png",
-            "text": "Full interior breakdown showing how the cover's visual language was extended to running heads, chapter openers and image plates inside the book."
+            "text": "Full interior breakdown showing how the cover's visual language was changed over time."
           }
         ]
       }
