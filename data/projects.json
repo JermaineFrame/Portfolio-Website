@@ -310,8 +310,14 @@
       ],
       "summary": "Street photography series.",
       "description": "Placeholder.",
-      "cover": "",
-      "media": [],
+      "cover": "assets/uploads/photo-street-01/LukeandLucy_Shoot_01Smaller.jpg",
+      "media": [
+        {
+          "type": "image",
+          "src": "assets/uploads/photo-street-01/LukeandLucy_Shoot_01Smaller.jpg",
+          "alt": "Street, Placeholder"
+        }
+      ],
       "featured": false
     },
     {
@@ -327,8 +333,14 @@
       ],
       "summary": "Studio portrait sitting.",
       "description": "Placeholder.",
-      "cover": "",
-      "media": [],
+      "cover": "assets/uploads/photo-portrait-01/AmbassadorShoot_Sept2025_01.jpg",
+      "media": [
+        {
+          "type": "image",
+          "src": "assets/uploads/photo-portrait-01/AmbassadorShoot_Sept2025_01.jpg",
+          "alt": "Portrait, Placeholder"
+        }
+      ],
       "featured": false
     },
     {
@@ -344,8 +356,14 @@
       ],
       "summary": "Coastal landscape study.",
       "description": "Placeholder.",
-      "cover": "",
-      "media": [],
+      "cover": "assets/uploads/photo-landscape-01/IMG_0468_Edit.jpg",
+      "media": [
+        {
+          "type": "image",
+          "src": "assets/uploads/photo-landscape-01/IMG_0468_Edit.jpg",
+          "alt": "Landscape, Placeholder"
+        }
+      ],
       "featured": false
     },
     {
@@ -361,8 +379,14 @@
       ],
       "summary": "Architectural photography.",
       "description": "Placeholder.",
-      "cover": "",
-      "media": [],
+      "cover": "assets/uploads/photo-architecture-01/IMG_0210-Edit.jpg",
+      "media": [
+        {
+          "type": "image",
+          "src": "assets/uploads/photo-architecture-01/IMG_0210-Edit.jpg",
+          "alt": "Architecture, Placeholder"
+        }
+      ],
       "featured": false
     },
     {
@@ -387,19 +411,28 @@
       "category": "research",
       "type": "visualization",
       "year": "2026",
-      "venue": "Virtual",
+      "venue": "Virtual Presentation",
       "summary": "Interactive network visualisation of citation patterns in digital humanities journals.",
       "description": "To better understand the intellectual throughlines across texts in the digital humanities field, we used the computational network-analysis tool, Gephi. Using Gephi, we worked with 23 major texts to identify and visualize three areas of overlap: shared scholarly themes, author networks, and disciplinary intersections. Through algorithms and statistical measures in Gephi, such as modularity measurement, centrality measures, and clustering analysis, we mapped the deeper connections that shape the field.",
       "methodology": "Bibliometric network analysis built on OpenAlex metadata, rendered with D3.js force-directed graphs.",
       "featured": false,
-      "tools": [],
+      "tools": [
+        "Gephi"
+      ],
       "tags": [],
-      "cover": "",
-      "media": []
+      "cover": "assets/uploads/research-visualisation-01/Screenshot_2026-06-18_at_9.19.35_AM.png",
+      "media": [
+        {
+          "type": "image",
+          "src": "assets/uploads/research-visualisation-01/Screenshot_2026-06-18_at_9.19.35_AM.png",
+          "alt": "Mapping Intellectual Networks in Texts & Technology: A Gephi Network Analysis"
+        }
+      ],
+      "role": "Data Analyst"
     },
     {
       "id": "research-dh-thesis",
-      "title": "Procedural obsolescence and Impermanence in gaming",
+      "title": "Procedural obsolescence and Impermanence in gaming (Working)",
       "category": "research",
       "type": "publication",
       "year": "2026",
@@ -408,7 +441,8 @@
       "description": "Ongoing doctoral research examining the intersection of digital humanities methodologies and the preservation of contested cultural heritage across three UK-based case studies.",
       "methodology": "Mixed-methods design combining archival ethnography, computational text analysis (topic modeling, NER) and participatory co-design sessions with community archivists.",
       "link": "",
-      "featured": true
+      "featured": true,
+      "cover": "assets/uploads/research-dh-thesis/DSC00483-3_Medium.jpeg"
     },
     {
       "id": "noctoflora",
